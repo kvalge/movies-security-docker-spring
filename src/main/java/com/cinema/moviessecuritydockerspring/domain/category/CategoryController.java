@@ -21,4 +21,9 @@ public class CategoryController {
     public List<CategoryResponse> getAllCategories() {
         return categoryService.getAllCategories();
     }
+
+    @DeleteMapping("/name")
+    public void deleteByName(@RequestParam String name) {
+        categoryService.deleteByName(name);
+    }
 }

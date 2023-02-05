@@ -23,4 +23,10 @@ public class CategoryService {
         List<Category> categories = categoryRepository.findAll();
         return categoryMapper.toResponse(categories);
     }
+
+    public void deleteByName(String name) {
+        Category category = categoryRepository.findByName(name);
+
+        categoryRepository.delete(category);
+    }
 }
