@@ -5,6 +5,8 @@ import com.cinema.moviessecuritydockerspring.domain.category.CategoryRepository;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieService {
 
@@ -32,5 +34,10 @@ public class MovieService {
         Movie movie = movieRepository.findByName(name);
 
         return movieMapper.toRequest(movie);
+    }
+
+    public List<MovieRequest> getAll() {
+        List<Movie> movies = movieRepository.findAll();
+        return movieMapper.toRequest(movies);
     }
 }

@@ -3,6 +3,8 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/movie")
 public class MovieController {
@@ -18,5 +20,10 @@ public class MovieController {
     @GetMapping("/name")
     public MovieRequest getByName(@RequestParam String name) {
         return movieService.getByName(name);
+    }
+
+    @GetMapping
+    public List<MovieRequest> getAll() {
+        return movieService.getAll();
     }
 }
