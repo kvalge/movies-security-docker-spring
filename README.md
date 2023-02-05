@@ -1,7 +1,10 @@
 # Movies Project
 
-Movie lending application which allows to manage users, movies and lending data.  
+Goal is to create movie lending application which allows to manage users, movies and lending data.  
 Used IDE: IntelliJ 2023.1 EAP.  
+
+### Docker
+Created Dockerfile and docker-compose.yml to containerize application and db.  
 
 ### Project structure
 Javadoc directory with index.html file to get general overview of project.
