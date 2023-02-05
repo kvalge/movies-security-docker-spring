@@ -26,4 +26,9 @@ public class CategoryController {
     public void deleteByName(@RequestParam String name) {
         categoryService.deleteByName(name);
     }
+
+    @DeleteMapping("/id")
+    public void deleteById(@RequestParam Long id) {
+        categoryService.deleteById(id);
+    }
 }
