@@ -1,7 +1,10 @@
-# Movies Database Project
+# Movies Project
 
+Movie lending application which allows to manage users, movies and lending data.  
 Used IDE: IntelliJ 2023.1 EAP.  
 
+### Project structure
+Javadoc directory with index.html file to get general overview of project.
 
 ------------------------------
 
