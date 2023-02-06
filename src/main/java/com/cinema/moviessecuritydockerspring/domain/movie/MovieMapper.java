@@ -2,6 +2,7 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface MovieMapper {
     MovieRequest toRequest(Movie movie);
 
     List<MovieRequest> toRequest(List<Movie> movies);
+
+    @Mapping(target = "category.name", source = "categoryName")
+    Movie update(MovieRequest request, @MappingTarget Movie movie);
 }

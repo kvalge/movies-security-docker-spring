@@ -26,4 +26,9 @@ public class MovieController {
     public List<MovieRequest> getAll() {
         return movieService.getAll();
     }
+
+    @PutMapping("/name")
+    public void updateMovie(@RequestBody MovieRequest request) {
+        movieService.updateMovie(request);
+    }
 }

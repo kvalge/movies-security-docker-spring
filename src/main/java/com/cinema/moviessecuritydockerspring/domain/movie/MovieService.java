@@ -12,6 +12,7 @@ public class MovieService {
 
     @Resource
     MovieRepository movieRepository;
+
     @Resource
     private MovieMapper movieMapper;
 
@@ -39,5 +40,15 @@ public class MovieService {
     public List<MovieRequest> getAll() {
         List<Movie> movies = movieRepository.findAll();
         return movieMapper.toRequest(movies);
+    }
+
+    public void updateMovie(MovieRequest request) {
+        Movie movie = movieRepository.findByName(request.getName());
+
+        Movie updatedMovie = movieMapper.update(request, movie);
+        Category category = categoryRepository.findByName(request.getCategoryName());
+        updatedMovie.setCategory(category);
+
+        movieRepository.save(updatedMovie);
     }
 }
