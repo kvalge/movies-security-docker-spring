@@ -18,6 +18,5 @@ public interface MovieMapper {
 
     List<MovieRequest> toRequest(List<Movie> movies);
 
-    @Mapping(target = "category.name", source = "categoryName")
     Movie update(MovieRequest request, @MappingTarget Movie movie);
 }

@@ -31,4 +31,9 @@ public class MovieController {
     public void updateMovie(@RequestBody MovieRequest request) {
         movieService.updateMovie(request);
     }
+
+    @DeleteMapping("/name")
+    public void deleteByName(@RequestParam String name) {
+        movieService.deleteByName(name);
+    }
 }

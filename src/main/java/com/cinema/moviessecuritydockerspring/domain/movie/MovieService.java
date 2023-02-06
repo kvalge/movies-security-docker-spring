@@ -51,4 +51,9 @@ public class MovieService {
 
         movieRepository.save(updatedMovie);
     }
+
+    public void deleteByName(String name) {
+        Movie movie = movieRepository.findByName(name);
+        movieRepository.delete(movie);
+    }
 }
