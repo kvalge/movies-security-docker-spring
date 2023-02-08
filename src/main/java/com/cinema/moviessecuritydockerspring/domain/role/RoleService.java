@@ -17,4 +17,9 @@ public class RoleService {
 
         roleRepository.save(entity);
     }
+
+    public void deleteRoleByName(String name) {
+        Role role = roleRepository.findByName(name);
+        roleRepository.delete(role);
+    }
 }

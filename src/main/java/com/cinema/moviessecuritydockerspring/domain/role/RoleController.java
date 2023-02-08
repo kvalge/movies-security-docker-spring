@@ -14,4 +14,9 @@ public class RoleController {
     public void addNewRole(@RequestParam String name) {
         roleService.addNewRole(name);
     }
+
+    @DeleteMapping("/name")
+    public void deleteRoleByName(@RequestParam String name) {
+        roleService.deleteRoleByName(name);
+    }
 }
