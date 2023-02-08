@@ -1,6 +1,6 @@
 # Movie Rental Project
 
-Goal is to create movie rental application which allows to manage authenticated and authorized users, categories, movies and rental data.  
+Goal is to create a movie rental application which allows to manage authenticated and authorized users, categories, movies and rental data.  
 Back-end project to github.com/kvalge/movies-security-docker-angular.
 Used IDE: IntelliJ 2023.1 EAP.  
 
