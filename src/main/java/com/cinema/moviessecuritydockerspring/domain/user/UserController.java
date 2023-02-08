@@ -16,4 +16,9 @@ public class UserController {
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
+
+    @GetMapping("/name")
+    public UserResponse getUserByUsername(@RequestParam String username) {
+        return userService.getUserByUsername(username);
+    }
 }

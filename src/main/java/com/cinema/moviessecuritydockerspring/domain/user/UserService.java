@@ -19,4 +19,9 @@ public class UserService {
 
         return userMapper.toResponse(users);
     }
+
+    public UserResponse getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        return userMapper.toResponse(user);
+    }
 }
