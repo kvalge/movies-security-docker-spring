@@ -15,6 +15,7 @@ javadoc directory with index.html file to get general overview of project.
 category: for movie categories with add, get all, get by name and delete functionalities.
 movie: add, get by name, get all, update and delete functionalities.
 role: add new and delete functionalities. Roles are ADMIN and USER.
+user: get all, get by username and delete functionalities.
 
 ------------------------------
 

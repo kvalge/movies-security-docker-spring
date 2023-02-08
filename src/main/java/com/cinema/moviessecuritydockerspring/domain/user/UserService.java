@@ -24,4 +24,10 @@ public class UserService {
         User user = userRepository.findByUsername(username);
         return userMapper.toResponse(user);
     }
+
+    public void deleteUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+
+        userRepository.delete(user);
+    }
 }

@@ -21,4 +21,9 @@ public class UserController {
     public UserResponse getUserByUsername(@RequestParam String username) {
         return userService.getUserByUsername(username);
     }
+
+    @DeleteMapping("/name")
+    public void deleteUserByUsername(@RequestParam String username) {
+        userService.deleteUserByUsername(username);
+    }
 }
