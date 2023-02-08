@@ -14,6 +14,7 @@ javadoc directory with index.html file to get general overview of project.
 ### Functionalities
 category: for movie categories with add, get all, get by name and delete functionalities.
 movie: add, get by name, get all, update and delete functionalities.
+role: add new functionality. Roles could be ADMIN and USER.
 
 ------------------------------
 

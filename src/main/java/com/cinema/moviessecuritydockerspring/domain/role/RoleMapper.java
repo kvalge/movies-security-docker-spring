@@ -5,4 +5,6 @@ import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface RoleMapper {
+
+    Role toEntity(String name);
 }

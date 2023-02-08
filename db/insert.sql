@@ -28,3 +28,10 @@ VALUES (DEFAULT, 'General Magic', 'In 1990, at a secretive Silicon Valley startu
 
 INSERT INTO category (id, name, description, category_id)
 VALUES (DEFAULT, 'Another Round', 'Four friends decide to embark on an experiment to test Skårderud''s theory. They start a group log of what occurs when they start drinking at regular intervals to maintain this blood alcohol level.', 3);
+
+
+INSERT INTO role (id, name)
+VALUES (DEFAULT, 'ADMIN');
+
+INSERT INTO role (id, name)
+VALUES (DEFAULT, 'USER');
