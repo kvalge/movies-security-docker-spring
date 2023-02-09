@@ -4,6 +4,7 @@ import com.cinema.moviessecuritydockerspring.security.CustomUserDetailsService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -44,7 +45,11 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
-                        authorize.anyRequest().permitAll()
+                        authorize.requestMatchers("/register").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/movie").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/movie/name").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/category").permitAll()
+                                .anyRequest().authenticated()
                 );
         return http.build();
     }
