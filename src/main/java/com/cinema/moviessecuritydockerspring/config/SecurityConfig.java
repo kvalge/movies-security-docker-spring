@@ -46,9 +46,11 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register").permitAll()
+                                .requestMatchers("/login").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/movie").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/movie/name").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/category").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/user").hasAnyAuthority("ROLE_ADMIN")
                                 .anyRequest().authenticated()
                 );
         return http.build();
