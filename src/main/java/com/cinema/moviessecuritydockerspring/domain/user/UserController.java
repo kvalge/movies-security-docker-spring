@@ -1,7 +1,6 @@
 package com.cinema.moviessecuritydockerspring.domain.user;
 
 import jakarta.annotation.Resource;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,12 +12,14 @@ public class UserController {
     @Resource
     private UserService userService;
 
+    @Resource
+    private UserRepository userRepository;
+
     @GetMapping
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/name")
     public UserResponse getUserByUsername(@RequestParam String username) {
         return userService.getUserByUsername(username);
