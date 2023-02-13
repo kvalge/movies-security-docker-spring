@@ -2,13 +2,20 @@ version: '3.8'
 services:
   movies-spring:
     image: "movies"
-    build: ./
+    container_name: "movies"
+    build: .
+    environment:
+      spring.datasource.url: jdbc:postgresql://db:5432/postgres
+      spring.datasource.username: postgres
+      spring.datasource.password: postgres
+      spring.datasource.driverClassName: org.postgresql.Driver
     ports:
       - "8080:8080"
     depends_on:
-      - movies-db
-  movies-db:
+      - db
+  db:
     image: "postgres:alpine"
+    container_name: "db"
     ports:
       - "5432:5432"
     volumes:
