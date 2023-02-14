@@ -45,14 +45,29 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
+                {
+                    try {
                         authorize.requestMatchers("/register").permitAll()
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/movie").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/movie/name").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/movie/new").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT, "/movie").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/movie/name").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.GET, "/category").permitAll()
-                                .requestMatchers(HttpMethod.GET, "/user").hasAnyAuthority("ROLE_ADMIN")
-                                .anyRequest().authenticated()
-                );
+                                .requestMatchers(HttpMethod.POST, "/category/new").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/category/name").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE, "/category/id").hasRole("ADMIN")
+                                .requestMatchers("/user/**").hasRole("ADMIN")
+                                .requestMatchers("/role/**").hasRole("ADMIN")
+                                .anyRequest()
+                                .authenticated()
+                                .and()
+                                .httpBasic();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
         return http.build();
     }
 }
