@@ -34,8 +34,21 @@ class RoleServiceTest {
         deleteRole(byName);
     }
 
+    /**
+     * Tests whether the hard coded role saved to the database via save method asserts null after
+     * using deleteRoleByName method.
+     */
     @Test
     void deleteRoleByName() {
+        Role role = getRole();
+        String roleName = role.getName();
+        saveRole(role);
+
+        roleService.deleteRoleByName(roleName);
+
+        Role byName = roleRepository.findByName(roleName);
+
+        assertNull(byName);
     }
 
     /**
@@ -45,6 +58,10 @@ class RoleServiceTest {
         Role role = new Role();
         role.setName("ROLE_Roll");
         return role;
+    }
+
+    private void saveRole(Role role) {
+        roleRepository.save(role);
     }
 
     private void deleteRole(Role role) {
