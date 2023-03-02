@@ -33,7 +33,7 @@ class RoleRepositoryTest {
      */
     private static Role getRole() {
         Role role = new Role();
-        role.setName("Roll");
+        role.setName("ROLE_Roll");
         return role;
     }
 
