@@ -4,19 +4,19 @@ Goal is to create a movie rental application which allows to manage authenticate
 Back-end project to github.com/kvalge/movies-security-docker-angular.
 Used IDE: IntelliJ 2023.1 EAP.  
 
-### Docker
+### Containerization
 Created Dockerfile and docker-compose.yml to containerize application and Postgres db.  
 
 ### Project structure
 domain directory to manage functionalities.  
-javadoc directory with index.html file to get general overview of project.
+javadoc directory with index.html file to get general overview of the project.
 
 ### Functionalities
-category: for movie categories with add, get all, get by name and delete functionalities.
-movie: add, get by name, get all, update and delete functionalities.
-role: add new and delete functionalities. Roles are ADMIN and USER.
-user: get all, get by username and delete functionalities.
-register: register user functionality.
+category: for movie categories with add, get all, get by name and delete functionalities.  
+movie: add, get by name, get all, update and delete functionalities.  
+role: add new and delete functionalities. Roles are ADMIN and USER.  
+user: get all, get by username and delete functionalities.   
+register: register user functionality.  
 
 ------------------------------
 
