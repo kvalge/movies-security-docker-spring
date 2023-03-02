@@ -21,7 +21,8 @@ class RoleServiceTest {
      */
     @Test
     void addNewRole() {
-        String roleName = getRoleName();
+        Role role = getRole();
+        String roleName = role.getName();
 
         roleService.addNewRole(roleName);
 
@@ -37,8 +38,13 @@ class RoleServiceTest {
     void deleteRoleByName() {
     }
 
-    private static String getRoleName() {
-        return "Roll";
+    /**
+     * Hard coded role entity.
+     */
+    private static Role getRole() {
+        Role role = new Role();
+        role.setName("ROLE_Roll");
+        return role;
     }
 
     private void deleteRole(Role role) {
