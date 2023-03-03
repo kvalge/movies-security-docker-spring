@@ -1,4 +1,4 @@
-package com.cinema.moviessecuritydockerspring.infrastructure.exeption;
+package com.cinema.moviessecuritydockerspring.infrastructure.exception;
 
 import lombok.Data;
 
