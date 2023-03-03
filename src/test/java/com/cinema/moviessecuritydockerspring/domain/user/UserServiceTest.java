@@ -47,8 +47,28 @@ class UserServiceTest {
         deleteRole(role);
     }
 
+
+    /**
+     * Tests equality between user name and email of user saved to database via repository save method
+     * and user name and email returned via getUserByUsername method.
+     */
     @Test
     void getUserByUsername() {
+        Role role = getRole();
+        Set<Role> roles = getRoles();
+        User user = getUser(roles);
+        String username = user.getUsername();
+        String userName = user.getName();
+        String userEmail = user.getEmail();
+
+        String name = userService.getUserByUsername(username).getName();
+        String email = userService.getUserByUsername(username).getEmail();
+
+        assertEquals(userName, name);
+        assertEquals(userEmail, email);
+
+        deleteUser(user);
+        deleteRole(role);
     }
 
     @Test
