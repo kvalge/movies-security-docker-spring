@@ -29,12 +29,22 @@ public class UserService {
         return userMapper.toResponse(users);
     }
 
+    /**
+     * Checks is there a requested user in database before finding user by name.
+     */
     public UserResponse getUserByUsername(String username) {
+        validationService.userNotFound(username);
+
         User user = userRepository.findByUsername(username);
         return userMapper.toResponse(user);
     }
 
+    /**
+     * Checks is there a requested user in database before finding user by name for deletion.
+     */
     public void deleteUserByUsername(String username) {
+        validationService.userNotFound(username);
+
         User user = userRepository.findByUsername(username);
 
         userRepository.delete(user);

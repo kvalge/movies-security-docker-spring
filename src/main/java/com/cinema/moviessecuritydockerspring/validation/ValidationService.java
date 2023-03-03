@@ -59,4 +59,17 @@ public class ValidationService {
             throw new DataNotFoundException(message);
         }
     }
+
+    /**
+     * Checks whether there is the requested user in the database.
+     */
+    public String userNotFound(String username) {
+        User libraryUser = userRepository.findByUsername(username);
+        if (libraryUser != null) {
+            return "User is found!";
+        } else {
+            String message = "No user with username '" + username + "' exists!";
+            throw new DataNotFoundException(message);
+        }
+    }
 }
