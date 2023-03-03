@@ -13,10 +13,10 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class UserServiceTest {
+class UserControllerTest {
 
     @Autowired
-    private UserService userService;
+    private UserController userController;
 
     @Autowired
     private UserRepository userRepository;
@@ -36,7 +36,7 @@ class UserServiceTest {
         String userName = user.getName();
         String userEmail = user.getEmail();
 
-        List<UserResponse> users = userService.getAllUsers();
+        List<UserResponse> users = userController.getAllUsers();
         for (UserResponse userResponse : users) {
             if (userName.equals(userResponse.getName()) && userEmail.equals(userResponse.getEmail())) {
                 assertTrue(true);
@@ -46,7 +46,6 @@ class UserServiceTest {
         deleteUser(user);
         deleteRole(role);
     }
-
 
     /**
      * Tests equality between user name and email of user saved to database via repository save method
@@ -61,8 +60,8 @@ class UserServiceTest {
         String userName = user.getName();
         String userEmail = user.getEmail();
 
-        String name = userService.getUserByUsername(username).getName();
-        String email = userService.getUserByUsername(username).getEmail();
+        String name = userController.getUserByUsername(username).getName();
+        String email = userController.getUserByUsername(username).getEmail();
 
         assertEquals(userName, name);
         assertEquals(userEmail, email);
@@ -82,7 +81,7 @@ class UserServiceTest {
         User userEntity = getUser(roles);
         String username = userEntity.getUsername();
 
-        userService.deleteUserByUsername(username);
+        userController.deleteUserByUsername(username);
 
         User user = userRepository.findByUsername(username);
 

@@ -12,9 +12,6 @@ public class UserController {
     @Resource
     private UserService userService;
 
-    @Resource
-    private UserRepository userRepository;
-
     @GetMapping
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
