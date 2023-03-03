@@ -39,8 +39,28 @@ class UserRepositoryTest {
         deleteRole(role);
     }
 
+
+    /**
+     * Tests equality between the username and the email of a hard coded user entity saved to the database and
+     * the username and the email returned via findByUsernameOrEmail method.
+     */
     @Test
     void findByUsernameOrEmail() {
+        Role role = getRole();
+        Set<Role> roles = getRoles();
+        User user = getUser(roles);
+        String userUsername = user.getUsername();
+        String userEmail = user.getEmail();
+
+        User byUsernameOrEmail = userRepository.findByUsernameOrEmail(userUsername, userEmail);
+        String username = byUsernameOrEmail.getUsername();
+        String email = byUsernameOrEmail.getEmail();
+
+        assertEquals(userUsername, username);
+        assertEquals(userEmail, email);
+
+        deleteUser(user);
+        deleteRole(role);
     }
 
     /**
