@@ -7,8 +7,6 @@ import com.cinema.moviessecuritydockerspring.infrastructure.exception.DataNotFou
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ValidationService {
 
@@ -30,14 +28,14 @@ public class ValidationService {
     }
 
     /**
-     * Checks whether there are roles in the database to return.
+     * Checks whether there is the requested role in the database.
      */
-    public String rolesNotFound() {
-        List<Role> roleList = roleRepository.findAll();
-        if (roleList.size() != 0) {
-            return "Request completed!";
+    public String roleNotFound(String name) {
+        Role role = roleRepository.findByName(name);
+        if (role != null) {
+            return "Role is found!";
         } else {
-            String message = "No roles found!";
+            String message = "No such role exists!";
             throw new DataNotFoundException(message);
         }
     }
