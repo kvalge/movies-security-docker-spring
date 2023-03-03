@@ -1,5 +1,6 @@
 package com.cinema.moviessecuritydockerspring.domain.user;
 
+import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,15 @@ public class UserService {
     @Resource
     private UserMapper userMapper;
 
+    @Resource
+    private ValidationService validationService;
+
+    /**
+     * Checks isn't the user database empty before returning all users.
+     */
     public List<UserResponse> getAllUsers() {
+        validationService.libraryUsersNotFound();
+
         List<User> users = userRepository.findAll();
 
         return userMapper.toResponse(users);
