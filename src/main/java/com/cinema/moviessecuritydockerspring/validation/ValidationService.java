@@ -113,7 +113,7 @@ public class ValidationService {
     }
 
     /**
-     * Checks whether there is the requested category with inserted name in the database.
+     * Checks whether there is the requested category with the inserted name in the database.
      */
     public String categoryNotFound(String name) {
         Category category = categoryRepository.findByName(name);
@@ -126,7 +126,7 @@ public class ValidationService {
     }
 
     /**
-     * Checks whether there is the requested category with inserted id in the database.
+     * Checks whether there is the requested category with the inserted id in the database.
      */
     public String categoryNotFound(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
@@ -138,10 +138,16 @@ public class ValidationService {
         }
     }
 
+    /**
+     * Checks whether the requested category is in use and not allowed to delete.
+     */
     public String categoryIsInUse(String name) {
         return getMessage(name);
     }
 
+    /**
+     * Checks whether the requested category is in use and not allowed to delete.
+     */
     public String categoryIsInUse(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
         String name = category.get().getName();
@@ -149,6 +155,10 @@ public class ValidationService {
         return getMessage(name);
     }
 
+    /**
+     * Returns the validation message checking whether requested category is in use
+     * and not allowed to delete.
+     */
     private String getMessage(String name) {
         List<Movie> movies = getMovies();
         for (Movie movie : movies) {
