@@ -1,5 +1,7 @@
 package com.cinema.moviessecuritydockerspring.validation;
 
+import com.cinema.moviessecuritydockerspring.domain.category.Category;
+import com.cinema.moviessecuritydockerspring.domain.category.CategoryRepository;
 import com.cinema.moviessecuritydockerspring.domain.role.Role;
 import com.cinema.moviessecuritydockerspring.domain.role.RoleRepository;
 import com.cinema.moviessecuritydockerspring.domain.user.User;
@@ -10,6 +12,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ValidationService {
@@ -19,6 +22,9 @@ public class ValidationService {
 
     @Resource
     private UserRepository userRepository;
+
+    @Resource
+    private CategoryRepository categoryRepository;
 
 
     /**
@@ -69,6 +75,58 @@ public class ValidationService {
             return "User is found!";
         } else {
             String message = "No user with username '" + username + "' exists!";
+            throw new DataNotFoundException(message);
+        }
+    }
+
+    /**
+     * Checks whether the category already exists in the database.
+     */
+    public String categoryExists(String name) {
+        Category category = categoryRepository.findByName(name);
+        if (category == null) {
+            return "New category '" + name + "' is added!";
+        } else {
+            String message = "Category name '" + name + "' already exists";
+            throw new DataAlreadyExistsException(message);
+        }
+    }
+
+    /**
+     * Checks whether there are categories in the database to return.
+     */
+    public String categoriesNotFound() {
+        List<Category> categoryList = categoryRepository.findAll();
+        if (categoryList.size() != 0) {
+            return "Request completed!";
+        } else {
+            String message = "No categories found!";
+            throw new DataNotFoundException(message);
+        }
+    }
+
+    /**
+     * Checks whether there is the requested category with inserted name in the database.
+     */
+    public String categoryNotFound(String name) {
+        Category category = categoryRepository.findByName(name);
+        if (category != null) {
+            return "Category is found!";
+        } else {
+            String message = "No category with name '" + name + "' exists!";
+            throw new DataNotFoundException(message);
+        }
+    }
+
+    /**
+     * Checks whether there is the requested category with inserted id in the database.
+     */
+    public String categoryNotFound(Long id) {
+        Optional<Category> category = categoryRepository.findById(id);
+        if (category.isPresent()) {
+            return "Category is found!";
+        } else {
+            String message = "No category with ID '" + id + "' exists!";
             throw new DataNotFoundException(message);
         }
     }
