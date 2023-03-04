@@ -1,5 +1,6 @@
 package com.cinema.moviessecuritydockerspring.domain.category;
 
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@Transactional
 class CategoryServiceTest {
 
     @Autowired
@@ -55,12 +57,35 @@ class CategoryServiceTest {
         deleteCategory(categoryEntity);
     }
 
+    /**
+     * Tests whether the hard coded category saved to the database via save method asserts null after
+     * using deleteByName method.
+     */
     @Test
     void deleteByName() {
+        Category categoryEntity = getCategory();
+        String entityName = categoryEntity.getName();
+        saveCategory(categoryEntity);
+
+        categoryService.deleteByName(entityName);
+
+        Category byName = categoryRepository.findByName(entityName);
+
+        assertNull(byName);
     }
 
     @Test
     void deleteById() {
+        Category categoryEntity = getCategory();
+        String entityName = categoryEntity.getName();
+        saveCategory(categoryEntity);
+        Long id = categoryRepository.findByName(entityName).getId();
+
+        categoryService.deleteById(id);
+
+        Category byName = categoryRepository.findByName(entityName);
+
+        assertNull(byName);
     }
 
     /**
