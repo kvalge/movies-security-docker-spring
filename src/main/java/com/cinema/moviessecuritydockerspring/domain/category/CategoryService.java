@@ -1,5 +1,6 @@
 package com.cinema.moviessecuritydockerspring.domain.category;
 
+import com.cinema.moviessecuritydockerspring.domain.movie.MovieRepository;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ public class CategoryService {
 
     @Resource
     private CategoryRepository categoryRepository;
+
+    @Resource
+    private MovieRepository movieRepository;
 
     @Resource
     private ValidationService validationService;
@@ -34,6 +38,7 @@ public class CategoryService {
 
     public void deleteByName(String name) {
         validationService.categoryNotFound(name);
+        validationService.categoryIsInUse(name);
 
         Category category = categoryRepository.findByName(name);
 
@@ -42,6 +47,7 @@ public class CategoryService {
 
     public void deleteById(Long id) {
         validationService.categoryNotFound(id);
+        validationService.categoryIsInUse(id);
 
         categoryRepository.deleteById(id);
     }

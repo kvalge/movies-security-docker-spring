@@ -3,11 +3,11 @@ package com.cinema.moviessecuritydockerspring.infrastructure.exception;
 import lombok.Data;
 
 @Data
-public class DataAlreadyExistsException extends RuntimeException {
+public class DataExistsException extends RuntimeException {
 
     private String message;
 
-    public DataAlreadyExistsException(String message) {
+    public DataExistsException(String message) {
         super(message);
         this.message = message;
     }
