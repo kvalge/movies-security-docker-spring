@@ -139,14 +139,16 @@ public class ValidationService {
     }
 
     /**
-     * Checks whether the requested category is in use and not allowed to delete.
+     * Checks whether the requested category is in use as a property of
+     * some movie and not allowed to delete.
      */
     public String categoryIsInUse(String name) {
         return getMessage(name);
     }
 
     /**
-     * Checks whether the requested category is in use and not allowed to delete.
+     * Checks whether the requested category is in use as a property of
+     * some movie and not allowed to delete.
      */
     public String categoryIsInUse(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
@@ -156,8 +158,8 @@ public class ValidationService {
     }
 
     /**
-     * Returns the validation message checking whether requested category is in use
-     * and not allowed to delete.
+     * Returns the validation message checking whether the requested category is in use as a property of
+     * some movie and not allowed to delete.
      */
     private String getMessage(String name) {
         List<Movie> movies = getMovies();
