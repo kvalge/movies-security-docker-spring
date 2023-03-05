@@ -33,7 +33,6 @@ public class ValidationService {
     @Resource
     private MovieRepository movieRepository;
 
-
     /**
      * Checks whether the role already exists in the database.
      */
@@ -81,7 +80,7 @@ public class ValidationService {
         if (libraryUser != null) {
             return REQUEST_COMPLETED;
         } else {
-            String message = "No user with username '" + username + "' exists!";
+            String message = "No user with the username '" + username + "' exists!";
             throw new DataNotFoundException(message);
         }
     }
@@ -120,7 +119,7 @@ public class ValidationService {
         if (category != null) {
             return REQUEST_COMPLETED;
         } else {
-            String message = "No category with name '" + name + "' exists!";
+            String message = "No category with the name '" + name + "' exists!";
             throw new DataNotFoundException(message);
         }
     }
@@ -175,5 +174,44 @@ public class ValidationService {
 
     private List<Movie> getMovies() {
         return movieRepository.findAll();
+    }
+
+    /**
+     * Checks whether the movie already exists in the database.
+     */
+    public String movieExists(String name) {
+        Movie movie = movieRepository.findByName(name);
+        if (movie == null) {
+            return REQUEST_COMPLETED;
+        } else {
+            String message = "Movie withe the name '" + name + "' already exists!";
+            throw new DataExistsException(message);
+        }
+    }
+
+    /**
+     * Checks whether there is the requested movie with the inserted name in the database.
+     */
+    public String movieNotFound(String name) {
+        Movie movie = movieRepository.findByName(name);
+        if (movie != null) {
+            return REQUEST_COMPLETED;
+        } else {
+            String message = "No movie with the name '" + name + "' exists!";
+            throw new DataNotFoundException(message);
+        }
+    }
+
+    /**
+     * Checks whether there are movies in the database to return.
+     */
+    public String moviesNotFound() {
+        List<Movie> movieList = movieRepository.findAll();
+        if (movieList.size() != 0) {
+            return REQUEST_COMPLETED;
+        } else {
+            String message = "No movies found!";
+            throw new DataNotFoundException(message);
+        }
     }
 }
