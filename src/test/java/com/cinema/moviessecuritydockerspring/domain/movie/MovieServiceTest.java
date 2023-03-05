@@ -57,9 +57,9 @@ class MovieServiceTest {
      */
     @Test
     void getByName() {
-        String name = movieService.getByName("Film").getName();
-        String description = movieService.getByName("Film").getDescription();
-        String categoryName = movieService.getByName("Film").getCategoryName();
+        String name = movieService.getByName(movie.getName()).getName();
+        String description = movieService.getByName(movie.getName()).getDescription();
+        String categoryName = movieService.getByName(movie.getName()).getCategoryName();
 
         String movieName = movie.getName();
         String movieDescription = movie.getDescription();
