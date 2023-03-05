@@ -22,7 +22,7 @@ public class UserService {
      * Checks isn't the user database empty before returning all users.
      */
     public List<UserResponse> getAllUsers() {
-        validationService.libraryUsersNotFound();
+        validationService.usersNotFound();
 
         List<User> users = userRepository.findAll();
 

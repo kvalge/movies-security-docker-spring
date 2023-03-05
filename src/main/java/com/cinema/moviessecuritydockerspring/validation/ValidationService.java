@@ -62,9 +62,9 @@ public class ValidationService {
     /**
      * Checks whether there are users in the database to return.
      */
-    public String libraryUsersNotFound() {
-        List<User> libraryUserList = userRepository.findAll();
-        if (libraryUserList.size() != 0) {
+    public String usersNotFound() {
+        List<User> userList = userRepository.findAll();
+        if (userList.size() != 0) {
             return REQUEST_COMPLETED;
         } else {
             String message = "No user found!";
@@ -76,8 +76,8 @@ public class ValidationService {
      * Checks whether there is the requested user in the database.
      */
     public String userNotFound(String username) {
-        User libraryUser = userRepository.findByUsername(username);
-        if (libraryUser != null) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
             return REQUEST_COMPLETED;
         } else {
             String message = "No user with the username '" + username + "' exists!";
