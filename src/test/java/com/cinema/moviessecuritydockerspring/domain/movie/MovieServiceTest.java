@@ -2,6 +2,7 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 
 import com.cinema.moviessecuritydockerspring.domain.category.Category;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -25,20 +26,13 @@ class MovieServiceTest {
     @Mock
     private ValidationService validationService;
 
-    @Test
-    void addNewMovie() {
-    }
+    Movie movie = new Movie();
 
-    /**
-     * Tests equality between the name, the description and the category name of the hard coded movie
-     * entity and the movie properties returned via getByName method.
-     */
-    @Test
-    void getByName() {
+    @BeforeEach
+    void setup(){
         Category category = new Category();
         category.setName("Kategooria");
 
-        Movie movie = new Movie();
         movie.setName("Film");
         movie.setDescription("Kirjeldus");
         movie.setCategory(category);
@@ -51,7 +45,18 @@ class MovieServiceTest {
         when(movieRepository.findByName("Film")).thenReturn(movie);
         when(movieMapper.toRequest(movie)).thenReturn(request);
         when(validationService.movieNotFound("Film")).thenReturn("Film");
+    }
 
+    @Test
+    void addNewMovie() {
+    }
+
+    /**
+     * Tests equality between the name, the description and the category name of the hard coded movie
+     * entity and the movie properties returned via getByName method.
+     */
+    @Test
+    void getByName() {
         String name = movieService.getByName("Film").getName();
         String description = movieService.getByName("Film").getDescription();
         String categoryName = movieService.getByName("Film").getCategoryName();
