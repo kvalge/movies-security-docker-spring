@@ -38,9 +38,9 @@ public class MovieDetails {
     @Column(name = "country", length = 500)
     private String country;
 
-    @Size(max = 250)
+    @Size(max = 900)
     @NotNull
-    @Column(name = "description", nullable = false, length = 250)
+    @Column(name = "description", nullable = false, length = 900)
     private String description;
 
     @NotNull

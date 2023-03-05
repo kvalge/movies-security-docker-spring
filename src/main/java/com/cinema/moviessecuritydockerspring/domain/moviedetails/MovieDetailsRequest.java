@@ -1,6 +1,5 @@
 package com.cinema.moviessecuritydockerspring.domain.moviedetails;
 
-import com.cinema.moviessecuritydockerspring.domain.movie.Movie;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -15,5 +14,5 @@ public class MovieDetailsRequest implements Serializable {
     private String year;
     private String country;
     private String description;
-    private Movie movie;
+    private String movieName;
 }
