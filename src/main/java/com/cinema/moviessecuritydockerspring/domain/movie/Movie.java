@@ -23,11 +23,6 @@ public class Movie {
     @Column(name = "name", nullable = false, length = 250)
     private String name;
 
-    @Size(max = 250)
-    @NotNull
-    @Column(name = "description", nullable = false, length = 250)
-    private String description;
-
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "category_id", nullable = false)

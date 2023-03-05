@@ -33,7 +33,6 @@ public class MovieService {
 
         Movie newMovie = new Movie();
         newMovie.setName(movie.getName());
-        newMovie.setDescription(movie.getDescription());
         Category category = categoryRepository.findByName(request.getCategoryName());
         newMovie.setCategory(category);
 

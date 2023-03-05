@@ -27,7 +27,6 @@ class MovieRepositoryTest {
 
         Movie movieEntity = new Movie();
         movieEntity.setName("Film");
-        movieEntity.setDescription("Kirjeldus");
         movieEntity.setCategory(categoryEntity);
 
         testEntityManager.persist(categoryEntity);

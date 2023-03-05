@@ -34,12 +34,10 @@ class MovieServiceTest {
         category.setName("Kategooria");
 
         movie.setName("Film");
-        movie.setDescription("Kirjeldus");
         movie.setCategory(category);
 
         MovieRequest request = new MovieRequest();
         request.setName("Film");
-        request.setDescription("Kirjeldus");
         request.setCategoryName(category.getName());
 
         when(movieRepository.findByName("Film")).thenReturn(movie);
@@ -58,15 +56,12 @@ class MovieServiceTest {
     @Test
     void getByName() {
         String name = movieService.getByName(movie.getName()).getName();
-        String description = movieService.getByName(movie.getName()).getDescription();
         String categoryName = movieService.getByName(movie.getName()).getCategoryName();
 
         String movieName = movie.getName();
-        String movieDescription = movie.getDescription();
         String movieCategory = movie.getCategory().getName();
 
         assertEquals(movieName, name);
-        assertEquals(movieDescription, description);
         assertEquals(movieCategory, categoryName);
     }
 
