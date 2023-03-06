@@ -126,8 +126,17 @@ class MovieServiceTest {
         assertThat(movieRequests.get(1).getName()).isEqualTo(newMovie.getName());
     }
 
+    /**
+     * Verifies whether updateMovie method calls the mapper layer update movie method one time.
+     */
     @Test
     void updateMovie() {
+        when(categoryRepository.findByName(request.getCategoryName())).thenReturn(category);
+        when(movieMapper.update(request, movie)).thenReturn(newMovie);
+
+        movieService.updateMovie(request);
+
+        verify(movieMapper, times(1)).update(request, movie);
     }
 
     /**
