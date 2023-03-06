@@ -32,4 +32,11 @@ public class MovieDetailsService {
 
         movieDetailsRepository.save(newDetails);
     }
+
+    public void updateDetails(MovieDetailsRequest request) {
+        MovieDetails movie = movieDetailsRepository.findByMovieName(request.getMovieName());
+        MovieDetails updatedMovie = movieDetailsMapper.partialUpdate(request, movie);
+
+        movieDetailsRepository.save(updatedMovie);
+    }
 }
