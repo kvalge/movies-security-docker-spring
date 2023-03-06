@@ -24,7 +24,7 @@ public class MovieDetailsService {
     /**
      * Checks whether the movie exists to add details to it.
      */
-    public void addDetails(MovieDetailsRequest request) {
+    public MovieDetailsRequest addDetails(MovieDetailsRequest request) {
         validationService.movieNotFound(request.getMovieName());
 
         MovieDetails details = movieDetailsMapper.toEntity(request);
@@ -39,7 +39,9 @@ public class MovieDetailsService {
         Movie movie = movieRepository.findByName(request.getMovieName());
         newDetails.setMovie(movie);
 
-        movieDetailsRepository.save(newDetails);
+        MovieDetails savedDetails = movieDetailsRepository.save(newDetails);
+
+        return movieDetailsMapper.toDto(savedDetails);
     }
 
     /**

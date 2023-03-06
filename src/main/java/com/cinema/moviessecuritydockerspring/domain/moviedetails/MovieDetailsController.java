@@ -11,8 +11,8 @@ public class MovieDetailsController {
     private MovieDetailsService movieDetailsService;
 
     @PostMapping("/new")
-    public void addDetails(@RequestBody MovieDetailsRequest request) {
-        movieDetailsService.addDetails(request);
+    public MovieDetailsRequest addDetails(@RequestBody MovieDetailsRequest request) {
+        return movieDetailsService.addDetails(request);
     }
 
     @PutMapping
