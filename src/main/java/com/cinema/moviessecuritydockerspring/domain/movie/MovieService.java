@@ -2,6 +2,7 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 
 import com.cinema.moviessecuritydockerspring.domain.category.Category;
 import com.cinema.moviessecuritydockerspring.domain.category.CategoryRepository;
+import com.cinema.moviessecuritydockerspring.domain.moviedetails.MovieDetailsService;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class MovieService {
 
     @Resource
     private CategoryRepository categoryRepository;
+
+    @Resource
+    private MovieDetailsService movieDetailsService;
 
     @Resource
     private ValidationService validationService;
@@ -78,11 +82,15 @@ public class MovieService {
 
     /**
      * Checks is there a requested movie in the database before deleting it.
+     * Deletes also movie details.
      */
     public void deleteByName(String name) {
         validationService.movieNotFound(name);
 
         Movie movie = movieRepository.findByName(name);
+
+        movieDetailsService.deleteDetails(name);
+
         movieRepository.delete(movie);
     }
 }
