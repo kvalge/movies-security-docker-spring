@@ -19,4 +19,9 @@ public class MovieDetailsController {
     public void updateDetails(@RequestBody MovieDetailsRequest request) {
         movieDetailsService.updateDetails(request);
     }
+
+    @DeleteMapping("/name")
+    public void deleteDetails(@RequestParam String name) {
+        movieDetailsService.deleteDetails(name);
+    }
 }

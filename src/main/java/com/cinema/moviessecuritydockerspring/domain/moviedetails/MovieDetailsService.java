@@ -39,4 +39,10 @@ public class MovieDetailsService {
 
         movieDetailsRepository.save(updatedMovie);
     }
+
+    public void deleteDetails(String name) {
+        MovieDetails movie = movieDetailsRepository.findByMovieName(name);
+
+        movieDetailsRepository.delete(movie);
+    }
 }
