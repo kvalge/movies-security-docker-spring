@@ -1,6 +1,6 @@
-# Movie Rental Project
+# Movie Project
 
-Goal is to create a movie rental application which allows to manage authenticated and authorized users, categories, movies and rental data.  
+The movie application which allows to manage authenticated and authorized users and movies.  
 Back-end project to github.com/kvalge/movies-security-docker-angular.
 Used IDE: IntelliJ 2023.1 EAP.  
 
@@ -8,15 +8,23 @@ Used IDE: IntelliJ 2023.1 EAP.
 Created Dockerfile and docker-compose.yml to containerize application and Postgres db.  
 
 ### Project structure
-domain directory to manage functionalities.  
+config directory to manage authentication and authorization.  
+domain to manage functionalities.  
+infrastructure to manage exceptions.  
+login to authenticate users logins.  
+validation to handle user input validation methods.  
 javadoc directory with index.html file to get general overview of the project.
 
 ### Functionalities
 category: for movie categories with add, get all, get by name and delete functionalities.  
 movie: add, get by name, get all, update and delete functionalities.  
+moviedetails: to add and manage detailed info to movies.  
 role: add new and delete functionalities. Roles are ADMIN and USER.  
 user: get all, get by username and delete functionalities.   
 register: register user functionality.  
+
+### Testing
+For unit testing it is used the same database or mocking.  
 
 ------------------------------
 

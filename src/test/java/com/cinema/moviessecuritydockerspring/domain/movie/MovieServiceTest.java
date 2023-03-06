@@ -3,6 +3,7 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 import com.cinema.moviessecuritydockerspring.domain.category.Category;
 import com.cinema.moviessecuritydockerspring.domain.category.CategoryRepository;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -10,6 +11,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -33,19 +38,26 @@ class MovieServiceTest {
     private ValidationService validationService;
 
     Movie movie = new Movie();
-
+    Movie newMovie = new Movie();
+    MovieRequest request = new MovieRequest();
+    MovieRequest newRequest = new MovieRequest();
     Category category = new Category();
 
     @BeforeEach
-    void setup(){
+    void setup() {
         category.setName("Kategooria");
 
         movie.setName("Film");
         movie.setCategory(category);
 
-        MovieRequest request = new MovieRequest();
+        newMovie.setName("Muuvi");
+        newMovie.setCategory(category);
+
         request.setName("Film");
         request.setCategoryName(category.getName());
+
+        newRequest.setName("Muuvi");
+        newRequest.setCategoryName(category.getName());
 
         when(movieRepository.findByName("Film")).thenReturn(movie);
         when(movieMapper.toRequest(movie)).thenReturn(request);
@@ -58,31 +70,23 @@ class MovieServiceTest {
      */
     @Test
     void addNewMovie() {
-        Movie newMovie = new Movie();
-        newMovie.setName("Muuvi");
-        newMovie.setCategory(category);
-
-        MovieRequest request = new MovieRequest();
-        request.setName("Muuvi");
-        request.setCategoryName(category.getName());
-
         Movie mapped = new Movie();
-        mapped.setName(request.getName());
+        mapped.setName(newRequest.getName());
         mapped.setCategory(category);
 
-        when(movieMapper.toEntity(request)).thenReturn(mapped);
+        when(movieMapper.toEntity(newRequest)).thenReturn(mapped);
         when(movieRepository.save(Mockito.any(Movie.class))).thenReturn(newMovie);
-        when(categoryRepository.findByName(request.getCategoryName())).thenReturn(category);
-        when(movieMapper.toRequest(newMovie)).thenReturn(request);
+        when(categoryRepository.findByName(newRequest.getCategoryName())).thenReturn(category);
+        when(movieMapper.toRequest(newMovie)).thenReturn(newRequest);
 
-        MovieRequest addedNewMovie = movieService.addNewMovie(request);
+        MovieRequest addedNewMovie = movieService.addNewMovie(newRequest);
 
         assertNotNull(addedNewMovie);
         assertEquals(newMovie.getName(), addedNewMovie.getName());
     }
 
     /**
-     * Tests equality between the name, the description and the category name of the hard coded movie
+     * Tests equality between the name and the category name of the hard coded movie
      * entity and the movie properties returned via getByName method.
      */
     @Test
@@ -97,8 +101,29 @@ class MovieServiceTest {
         assertEquals(movieCategory, categoryName);
     }
 
+    /**
+     * Tests whether getAll method asserts the returned list not to be null, not to be empty and
+     * to have same size as a hard coded list. And whether list elements has the same movie name as
+     * hard coded list elements.
+     */
     @Test
     void getAll() {
+        List<Movie> movies = new ArrayList<>();
+        movies.add(movie);
+        movies.add(newMovie);
+
+        List<MovieRequest> requests = new ArrayList<>();
+        requests.add(request);
+        requests.add(newRequest);
+
+        when(movieRepository.findAll()).thenReturn(movies);
+        when(movieMapper.toRequest(movies)).thenReturn(requests);
+
+        List<MovieRequest> movieRequests = movieService.getAll();
+
+        assertThat(movieRequests).isNotNull().isNotEmpty().hasSize(2);
+        assertThat(movieRequests.get(0).getName()).isEqualTo(movie.getName());
+        assertThat(movieRequests.get(1).getName()).isEqualTo(newMovie.getName());
     }
 
     @Test
