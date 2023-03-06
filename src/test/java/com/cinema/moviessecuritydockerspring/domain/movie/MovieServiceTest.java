@@ -2,8 +2,8 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 
 import com.cinema.moviessecuritydockerspring.domain.category.Category;
 import com.cinema.moviessecuritydockerspring.domain.category.CategoryRepository;
+import com.cinema.moviessecuritydockerspring.domain.moviedetails.MovieDetailsService;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -33,6 +33,9 @@ class MovieServiceTest {
 
     @Mock
     private CategoryRepository categoryRepository;
+
+    @Mock
+    private MovieDetailsService movieDetailsService;
 
     @Mock
     private ValidationService validationService;
@@ -144,6 +147,8 @@ class MovieServiceTest {
      */
     @Test
     void deleteByName() {
+        doNothing().when(movieDetailsService).deleteDetails(movie.getName());
+
         movieService.deleteByName(movie.getName());
 
         verify(movieRepository, times(1)).delete(movie);
