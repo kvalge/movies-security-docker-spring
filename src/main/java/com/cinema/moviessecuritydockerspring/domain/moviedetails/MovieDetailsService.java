@@ -62,8 +62,8 @@ public class MovieDetailsService {
     public void deleteDetails(String name) {
         validationService.movieNotFound(name);
 
-        MovieDetails movie = movieDetailsRepository.findByMovieName(name);
+        MovieDetails details = movieDetailsRepository.findByMovieName(name);
 
-        movieDetailsRepository.delete(movie);
+        movieDetailsRepository.delete(details);
     }
 }

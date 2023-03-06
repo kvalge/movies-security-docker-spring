@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class MovieDetailsServiceTest {
@@ -34,21 +34,17 @@ class MovieDetailsServiceTest {
     private ValidationService validationService;
 
     Movie movieEntity = new Movie();
+    MovieDetailsRequest request = new MovieDetailsRequest();
+    MovieDetails details = new MovieDetails();
 
     @BeforeEach
     void setup() {
-
-    }
-
-    @Test
-    void addDetails() {
         Category categoryEntity = new Category();
         categoryEntity.setName("Kategooria");
 
         movieEntity.setName("Film");
         movieEntity.setCategory(categoryEntity);
 
-        MovieDetailsRequest request = new MovieDetailsRequest();
         request.setDirector("Rezhisöör");
         request.setWriter("Autor");
         request.setStars("Näitlejad");
@@ -57,7 +53,6 @@ class MovieDetailsServiceTest {
         request.setDescription("Kirjeldus");
         request.setMovieName(movieEntity.getName());
 
-        MovieDetails details = new MovieDetails();
         details.setDirector("Rezhisöör");
         details.setWriter("Autor");
         details.setStars("Näitlejad");
@@ -66,6 +61,15 @@ class MovieDetailsServiceTest {
         details.setDescription("Kirjeldus");
         details.setMovie(movieEntity);
 
+        when(movieDetailsRepository.findByMovieName(movieEntity.getName())).thenReturn(details);
+    }
+
+    /**
+     * Tests whether the details request returned by addedDetails method asserts not null and
+     * whether hard coded movie properties and properties returned by addedDetails method are equal.
+     */
+    @Test
+    void addDetails() {
         when(validationService.movieExists(request.getMovieName())).thenReturn(null);
         when(movieDetailsMapper.toEntity(request)).thenReturn(details);
         when(movieRepository.findByName(request.getMovieName())).thenReturn(movieEntity);
@@ -76,13 +80,26 @@ class MovieDetailsServiceTest {
 
         assertNotNull(addedDetails);
         assertEquals(request.getMovieName(), addedDetails.getMovieName());
+        assertEquals(request.getDirector(), addedDetails.getDirector());
     }
 
+    /**
+     * Verifies whether updateDetails method calls the mapper layer update details method one time.
+     */
     @Test
     void updateDetails() {
+        movieDetailsService.updateDetails(request);
+
+        verify(movieDetailsMapper, times(1)).partialUpdate(request, details);
     }
 
+    /**
+     * Verifies whether deleteDetails method calls repository delete details method one time.
+     */
     @Test
     void deleteDetails() {
+        movieDetailsService.deleteDetails(movieEntity.getName());
+
+        verify(movieDetailsRepository, times(1)).delete(details);
     }
 }
