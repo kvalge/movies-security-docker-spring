@@ -26,7 +26,7 @@ public class MovieService {
     /**
      * Checks isn't the movie already in the database before adding it as new to the database.
      */
-    public void addNewMovie(MovieRequest request) {
+    public MovieRequest addNewMovie(MovieRequest request) {
         validationService.movieExists(request.getName());
 
         Movie movie = movieMapper.toEntity(request);
@@ -36,7 +36,8 @@ public class MovieService {
         Category category = categoryRepository.findByName(request.getCategoryName());
         newMovie.setCategory(category);
 
-        movieRepository.save(newMovie);
+        Movie savedNewMovie = movieRepository.save(newMovie);
+        return movieMapper.toRequest(savedNewMovie);
     }
 
     /**

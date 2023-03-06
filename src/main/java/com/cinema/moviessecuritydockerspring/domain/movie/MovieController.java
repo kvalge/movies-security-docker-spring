@@ -14,8 +14,8 @@ public class MovieController {
     private MovieService movieService;
 
     @PostMapping("/new")
-    public void addNewMovie(@RequestBody MovieRequest request) {
-        movieService.addNewMovie(request);
+    public MovieRequest addNewMovie(@RequestBody MovieRequest request) {
+        return movieService.addNewMovie(request);
     }
 
     @GetMapping("/name")
