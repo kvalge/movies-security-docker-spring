@@ -17,7 +17,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class MovieServiceTest {
@@ -130,7 +130,13 @@ class MovieServiceTest {
     void updateMovie() {
     }
 
+    /**
+     * Verifies whether deleteByName method calls repository delete movie method one time.
+     */
     @Test
     void deleteByName() {
+        movieService.deleteByName(movie.getName());
+
+        verify(movieRepository, times(1)).delete(movie);
     }
 }
