@@ -3,6 +3,8 @@ package com.cinema.moviessecuritydockerspring.domain.rental;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("rental")
 public class RentalController {
@@ -15,8 +17,8 @@ public class RentalController {
         rentalService.addLending(request);
     }
 
-    @GetMapping("/name")
-    public RentalResponse getLendingsByUsername(@RequestParam String username) {
-return null;
+    @GetMapping("/username")
+    public List<RentalResponse> getRentalsByUsername(@RequestParam String username) {
+        return rentalService.getRentalsByUsername(username);
     }
 }

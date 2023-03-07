@@ -8,6 +8,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class RentalService {
@@ -40,5 +41,11 @@ public class RentalService {
         newRental.setDueDate(rentalDate.plusDays(2));
 
         rentalRepository.save(newRental);
+    }
+
+    public List<RentalResponse> getRentalsByUsername(String username) {
+        List<Rental> rentalList = rentalRepository.findByUsername(username);
+
+        return rentalMapper.toResponse(rentalList);
     }
 }
