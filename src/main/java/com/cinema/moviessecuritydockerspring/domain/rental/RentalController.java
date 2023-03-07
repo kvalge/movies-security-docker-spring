@@ -30,7 +30,7 @@ public class RentalController {
     @PutMapping
     public RentalResponse updateRating(@RequestParam String username,
                                        @RequestParam String movieName,
-                                       @RequestParam String rating) {
+                                       @RequestParam Integer rating) {
         return rentalService.updateRating(username, movieName, rating);
     }
 }
