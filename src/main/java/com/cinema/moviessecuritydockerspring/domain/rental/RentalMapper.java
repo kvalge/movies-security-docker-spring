@@ -18,6 +18,8 @@ public interface RentalMapper {
 
     List<RentalResponse> toResponse(List<Rental> rentalList);
 
+    Rental updateRating(String rating, @MappingTarget Rental rental);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Rental partialUpdate(RentalRequest rentalRequest, @MappingTarget Rental rental);
 }

@@ -26,4 +26,11 @@ public class RentalController {
     public List<RentalResponse> getRentalsByMovieName(@RequestParam String movieName) {
         return rentalService.getRentalsByMovieName(movieName);
     }
+
+    @PutMapping
+    public RentalResponse updateRating(@RequestParam String username,
+                                       @RequestParam String movieName,
+                                       @RequestParam String rating) {
+        return rentalService.updateRating(username, movieName, rating);
+    }
 }

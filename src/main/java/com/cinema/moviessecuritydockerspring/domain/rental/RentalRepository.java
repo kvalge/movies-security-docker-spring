@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface RentalRepository extends JpaRepository<Rental, Long> {
 
+    @Query("select r from Rental r where r.user.username = ?1 and upper(r.movie.name) = upper(?2)")
+    Rental findByUsernameAndMovieName(String username, String name);
+
     @Query("select r from Rental r where r.user.username = ?1")
     List<Rental> findByUsername(String username);
 

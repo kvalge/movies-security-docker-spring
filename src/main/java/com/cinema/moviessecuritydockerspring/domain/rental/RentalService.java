@@ -54,4 +54,12 @@ public class RentalService {
 
         return rentalMapper.toResponse(rentalList);
     }
+
+    public RentalResponse updateRating(String username, String movieName, String rating) {
+        Rental rental = rentalRepository.findByUsernameAndMovieName(username, movieName);
+        Rental updatedRental = rentalMapper.updateRating(rating, rental);
+        rentalRepository.save(updatedRental);
+
+        return rentalMapper.toResponse(updatedRental);
+    }
 }
