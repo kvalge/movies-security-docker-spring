@@ -1,16 +1,15 @@
-package com.cinema.moviessecuritydockerspring.domain.lending;
+package com.cinema.moviessecuritydockerspring.domain.rental;
 
 import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
-public interface LendingMapper {
-
+public interface RentalMapper {
     @Mapping(target = "user.username", source = "username")
     @Mapping(target = "movie.name", source = "movieName")
-    Lending toEntity(LendingRequest lendingRequest);
+    Rental toEntity(RentalRequest rentalRequest);
 
-    LendingRequest toDto(Lending lending);
+    RentalRequest toDto(Rental rental);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    Lending partialUpdate(LendingRequest lendingRequest, @MappingTarget Lending lending);
+    Rental partialUpdate(RentalRequest rentalRequest, @MappingTarget Rental rental);
 }

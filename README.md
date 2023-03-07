@@ -22,7 +22,7 @@ moviedetails: to add and manage detailed info to movies.
 role: add new and delete functionalities. Roles are ADMIN and USER.  
 user: get all, get by username and delete functionalities.   
 register: register user functionality.  
-lending: add and manage lending data.
+rental: add and manage rental data.
 
 ### Testing
 For unit testing it is used the Postgres db or Mockito framework.  

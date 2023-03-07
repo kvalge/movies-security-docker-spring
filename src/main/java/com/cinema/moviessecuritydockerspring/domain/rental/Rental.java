@@ -1,4 +1,4 @@
-package com.cinema.moviessecuritydockerspring.domain.lending;
+package com.cinema.moviessecuritydockerspring.domain.rental;
 
 import com.cinema.moviessecuritydockerspring.domain.movie.Movie;
 import com.cinema.moviessecuritydockerspring.domain.user.User;
@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "lending")
-public class Lending {
+@Table(name = "rental")
+public class Rental {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -30,8 +30,8 @@ public class Lending {
     private Movie movie;
 
     @NotNull
-    @Column(name = "lending_date", nullable = false)
-    private LocalDate lendingDate;
+    @Column(name = "rental_date", nullable = false)
+    private LocalDate rentalDate;
 
     @Column(name = "due_date")
     private LocalDate dueDate;
