@@ -25,7 +25,7 @@ register: register user functionality.
 lending: add and manage lending data.
 
 ### Testing
-For unit testing it is used the same database or mocking.  
+For unit testing it is used the Postgres db or Mockito framework.  
 
 ------------------------------
 
