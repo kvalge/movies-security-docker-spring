@@ -48,4 +48,10 @@ public class RentalService {
 
         return rentalMapper.toResponse(rentalList);
     }
+
+    public List<RentalResponse> getRentalsByMovieName(String movieName) {
+        List<Rental> rentalList = rentalRepository.findByMovieName(movieName);
+
+        return rentalMapper.toResponse(rentalList);
+    }
 }

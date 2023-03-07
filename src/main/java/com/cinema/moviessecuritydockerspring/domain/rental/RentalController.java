@@ -21,4 +21,9 @@ public class RentalController {
     public List<RentalResponse> getRentalsByUsername(@RequestParam String username) {
         return rentalService.getRentalsByUsername(username);
     }
+
+    @GetMapping("/movieName")
+    public List<RentalResponse> getRentalsByMovieName(@RequestParam String movieName) {
+        return rentalService.getRentalsByMovieName(movieName);
+    }
 }
