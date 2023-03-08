@@ -134,13 +134,14 @@ class MovieServiceTest {
     void getByName() {
         when(movieMapper.toResponse(movie)).thenReturn(response);
 
-        String name = movieService.getByName(movie.getName()).getMovieName();
-        String categoryName = movieService.getByName(movie.getName()).getCategoryName();
+        MovieResponse movieByName = movieService.getByName(movie.getName());
+        String name = movieByName.getMovieName();
+        String categoryName = movieByName.getCategoryName();
 
         String movieName = movie.getName();
         String movieCategory = movie.getCategory().getName();
 
-        assertNotNull(movieService.getByName(movie.getName()));
+        assertNotNull(movieByName);
         assertEquals(movieName, name);
         assertEquals(movieCategory, categoryName);
     }
