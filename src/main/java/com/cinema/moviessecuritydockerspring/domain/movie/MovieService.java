@@ -59,6 +59,12 @@ public class MovieService {
 
         Movie movie = movieRepository.findByName(name);
 
+        MovieResponse toResponse = movieMapper.toResponse(movie);
+
+        MovieResponse response = new MovieResponse();
+        response.setMovieName(toResponse.getMovieName());
+        response.setCategoryName(toResponse.getCategoryName());
+
         int ratings = 0;
         int numberOfRentals = 0;
         List<Rental> rentals = rentalRepository.findByMovieName(name);
@@ -67,12 +73,6 @@ public class MovieService {
             ratings += rating;
             numberOfRentals ++;
         }
-
-        MovieResponse toResponse = movieMapper.toResponse(movie);
-
-        MovieResponse response = new MovieResponse();
-        response.setMovieName(toResponse.getMovieName());
-        response.setCategoryName(toResponse.getCategoryName());
 
         DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMaximumFractionDigits(1);

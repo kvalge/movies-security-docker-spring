@@ -17,6 +17,7 @@ public interface MovieMapper {
     MovieRequest toRequest(Movie movie);
 
     @Mapping(target = "categoryName", source = "category.name")
+    @Mapping(target = "movieName", source = "name")
     MovieResponse toResponse(Movie movie);
 
     List<MovieRequest> toRequest(List<Movie> movies);

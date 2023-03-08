@@ -3,6 +3,10 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 import com.cinema.moviessecuritydockerspring.domain.category.Category;
 import com.cinema.moviessecuritydockerspring.domain.category.CategoryRepository;
 import com.cinema.moviessecuritydockerspring.domain.moviedetails.MovieDetailsService;
+import com.cinema.moviessecuritydockerspring.domain.rental.Rental;
+import com.cinema.moviessecuritydockerspring.domain.rental.RentalRepository;
+import com.cinema.moviessecuritydockerspring.domain.role.Role;
+import com.cinema.moviessecuritydockerspring.domain.user.User;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,8 +15,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,12 +45,16 @@ class MovieServiceTest {
     private MovieDetailsService movieDetailsService;
 
     @Mock
+    private RentalRepository rentalRepository;
+
+    @Mock
     private ValidationService validationService;
 
     Movie movie = new Movie();
     Movie newMovie = new Movie();
     MovieRequest request = new MovieRequest();
     MovieRequest newRequest = new MovieRequest();
+    MovieResponse response = new MovieResponse();
     Category category = new Category();
 
     @BeforeEach
@@ -62,7 +73,34 @@ class MovieServiceTest {
         newRequest.setName("Muuvi");
         newRequest.setCategoryName(category.getName());
 
+        response.setMovieName("Film");
+        response.setCategoryName(category.getName());
+        response.setAvRating(5F);
+
+        Role role = new Role();
+        role.setName("ROLE_Roll");
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+
+        User user = new User();
+        user.setName("Nimi");
+        user.setUsername("Kasutaja");
+        user.setEmail("Email");
+        user.setPassword("Salasõna");
+        user.setRoles(roles);
+
+        Rental rental = new Rental();
+        rental.setUser(user);
+        rental.setMovie(movie);
+        rental.setRentalDate(LocalDate.now());
+        rental.setRating(5);
+
+        List<Rental> rentalList = new ArrayList<>();
+        rentalList.add(rental);
+
         when(movieRepository.findByName("Film")).thenReturn(movie);
+        when(rentalRepository.findByMovieName(movie.getName())).thenReturn(rentalList);
         when(movieMapper.toRequest(movie)).thenReturn(request);
         when(validationService.movieNotFound("Film")).thenReturn("Film");
     }
@@ -78,9 +116,9 @@ class MovieServiceTest {
         mapped.setCategory(category);
 
         when(movieMapper.toEntity(newRequest)).thenReturn(mapped);
+        when(movieMapper.toRequest(newMovie)).thenReturn(newRequest);
         when(movieRepository.save(Mockito.any(Movie.class))).thenReturn(newMovie);
         when(categoryRepository.findByName(newRequest.getCategoryName())).thenReturn(category);
-        when(movieMapper.toRequest(newMovie)).thenReturn(newRequest);
 
         MovieRequest addedNewMovie = movieService.addNewMovie(newRequest);
 
@@ -94,7 +132,9 @@ class MovieServiceTest {
      */
     @Test
     void getByName() {
-        String name = movieService.getByName(movie.getName()).getName();
+        when(movieMapper.toResponse(movie)).thenReturn(response);
+
+        String name = movieService.getByName(movie.getName()).getMovieName();
         String categoryName = movieService.getByName(movie.getName()).getCategoryName();
 
         String movieName = movie.getName();
