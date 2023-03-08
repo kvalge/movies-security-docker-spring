@@ -127,7 +127,7 @@ class MovieServiceTest {
     }
 
     /**
-     * Tests equality between the name and the category name of the hard coded movie
+     * Tests whether getByName doesn't return null and equality between the name and the category name of the hard coded movie
      * entity and the movie properties returned via getByName method.
      */
     @Test
@@ -140,6 +140,7 @@ class MovieServiceTest {
         String movieName = movie.getName();
         String movieCategory = movie.getCategory().getName();
 
+        assertNotNull(movieService.getByName(movie.getName()));
         assertEquals(movieName, name);
         assertEquals(movieCategory, categoryName);
     }
