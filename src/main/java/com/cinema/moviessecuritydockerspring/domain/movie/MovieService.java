@@ -3,10 +3,13 @@ package com.cinema.moviessecuritydockerspring.domain.movie;
 import com.cinema.moviessecuritydockerspring.domain.category.Category;
 import com.cinema.moviessecuritydockerspring.domain.category.CategoryRepository;
 import com.cinema.moviessecuritydockerspring.domain.moviedetails.MovieDetailsService;
+import com.cinema.moviessecuritydockerspring.domain.rental.Rental;
+import com.cinema.moviessecuritydockerspring.domain.rental.RentalRepository;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Service
@@ -23,6 +26,9 @@ public class MovieService {
 
     @Resource
     private MovieDetailsService movieDetailsService;
+
+    @Resource
+    private RentalRepository rentalRepository;
 
     @Resource
     private ValidationService validationService;
@@ -46,13 +52,33 @@ public class MovieService {
 
     /**
      * Checks is there a requested movie in the database before returning it.
+     * Adds average rating to movie info.
      */
-    public MovieRequest getByName(String name) {
+    public MovieResponse getByName(String name) {
         validationService.movieNotFound(name);
 
         Movie movie = movieRepository.findByName(name);
 
-        return movieMapper.toRequest(movie);
+        int ratings = 0;
+        int numberOfRentals = 0;
+        List<Rental> rentals = rentalRepository.findByMovieName(name);
+        for (Rental rental : rentals) {
+            Integer rating = rental.getRating();
+            ratings += rating;
+            numberOfRentals ++;
+        }
+
+        MovieResponse toResponse = movieMapper.toResponse(movie);
+
+        MovieResponse response = new MovieResponse();
+        response.setMovieName(toResponse.getMovieName());
+        response.setCategoryName(toResponse.getCategoryName());
+
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(1);
+        response.setAvRating(Float.valueOf(decimalFormat.format((float)ratings / numberOfRentals)));
+
+        return response;
     }
 
     /**

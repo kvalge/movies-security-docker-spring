@@ -19,7 +19,7 @@ public class MovieController {
     }
 
     @GetMapping("/name")
-    public MovieRequest getByName(@RequestParam String name) {
+    public MovieResponse getByName(@RequestParam String name) {
         return movieService.getByName(name);
     }
 
