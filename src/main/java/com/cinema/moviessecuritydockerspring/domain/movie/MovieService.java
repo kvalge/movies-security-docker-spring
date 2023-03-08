@@ -70,6 +70,9 @@ public class MovieService {
         List<Rental> rentals = rentalRepository.findByMovieName(name);
         for (Rental rental : rentals) {
             Integer rating = rental.getRating();
+            if (rating == null) {
+                continue;
+            }
             ratings += rating;
             numberOfRentals ++;
         }
