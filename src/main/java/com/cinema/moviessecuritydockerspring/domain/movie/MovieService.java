@@ -53,6 +53,8 @@ public class MovieService {
     /**
      * Checks is there a requested movie in the database before returning it.
      * Adds average rating to movie info.
+     * In case of user hasn't inserted a rating to the rented movie this rental will be left out of
+     * the average rating calculation.
      */
     public MovieResponse getByName(String name) {
         validationService.movieNotFound(name);
@@ -70,6 +72,9 @@ public class MovieService {
         List<Rental> rentals = rentalRepository.findByMovieName(name);
         for (Rental rental : rentals) {
             Integer rating = rental.getRating();
+            if (rating == null) {
+                continue;
+            }
             ratings += rating;
             numberOfRentals ++;
         }
