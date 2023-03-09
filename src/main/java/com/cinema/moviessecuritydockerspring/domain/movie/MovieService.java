@@ -79,9 +79,11 @@ public class MovieService {
             numberOfRentals++;
         }
 
+        Float avRating = (float) ratings / numberOfRentals;
+
         DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMaximumFractionDigits(1);
-        response.setAvRating(Float.valueOf(decimalFormat.format((float) ratings / numberOfRentals)));
+        response.setAvRating(Float.valueOf(decimalFormat.format(avRating)));
 
         return response;
     }
