@@ -1,28 +1,28 @@
 # Movie Project
-
 The movie application which allows to manage authenticated and authorized users and movies.  
-Back-end project to github.com/kvalge/movies-security-docker-angular.
+Back-end project to github.com/kvalge/movies-security-docker-angular.  
 Used IDE: IntelliJ 2023.1 EAP.  
 
 ### Containerization
 Created Dockerfile and docker-compose.yml to containerize application and Postgres db.  
 
 ### Project structure
-config directory to manage authentication and authorization.  
+analytics directory to return statistical analysis of categories (genres) and movies.  
+config to manage authentication and authorization.  
 domain to manage functionalities.  
 infrastructure to manage exceptions.  
 login to authenticate users logins.  
 validation to handle user input validation methods.  
-javadoc directory with index.html file to get general overview of the project.
+javadoc directory with index.html file to get general overview of the project.  
 
 ### Functionalities
-category: for movie categories with add, get all, get by name and delete functionalities.  
+category: for movie categories (genres) with add, get all, get by name and delete functionalities.  
 movie: add, get by name, get all, update and delete functionalities.  
 moviedetails: to add and manage detailed info to movies.  
 role: add new and delete functionalities. Roles are ADMIN and USER.  
 user: get all, get by username and delete functionalities.   
 register: register user functionality.  
-rental: add and manage rental data.
+rental: add and manage rental data.  
 
 ### Testing
 For unit testing it is used the Postgres db or Mockito framework.  
