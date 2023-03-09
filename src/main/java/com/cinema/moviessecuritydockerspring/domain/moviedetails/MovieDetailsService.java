@@ -32,7 +32,7 @@ public class MovieDetailsService {
         newDetails.setDirector(details.getDirector());
         newDetails.setWriter(details.getWriter());
         newDetails.setStars(details.getStars());
-        newDetails.setYear(details.getStars());
+        newDetails.setYear(details.getYear());
         newDetails.setCountry(details.getCountry());
         newDetails.setDescription(details.getDescription());
 

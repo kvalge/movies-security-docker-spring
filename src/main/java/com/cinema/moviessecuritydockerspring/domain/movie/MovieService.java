@@ -76,12 +76,12 @@ public class MovieService {
                 continue;
             }
             ratings += rating;
-            numberOfRentals ++;
+            numberOfRentals++;
         }
 
         DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMaximumFractionDigits(1);
-        response.setAvRating(Float.valueOf(decimalFormat.format((float)ratings / numberOfRentals)));
+        response.setAvRating(Float.valueOf(decimalFormat.format((float) ratings / numberOfRentals)));
 
         return response;
     }

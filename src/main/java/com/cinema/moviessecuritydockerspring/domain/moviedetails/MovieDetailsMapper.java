@@ -6,6 +6,7 @@ import org.mapstruct.*;
 public interface MovieDetailsMapper {
     MovieDetails toEntity(MovieDetailsRequest movieDetailsRequest);
 
+    @Mapping(target = "movieName", source = "movie.name")
     MovieDetailsRequest toDto(MovieDetails movieDetails);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
