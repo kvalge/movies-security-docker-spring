@@ -67,6 +67,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.DELETE, "/category/id").hasRole("ADMIN")
                                 .requestMatchers("/user/**").hasRole("ADMIN")
                                 .requestMatchers("/role/**").hasRole("ADMIN")
+                                .requestMatchers("/analytics/**").hasRole("ADMIN")
                                 .anyRequest()
                                 .authenticated()
                                 .and()
