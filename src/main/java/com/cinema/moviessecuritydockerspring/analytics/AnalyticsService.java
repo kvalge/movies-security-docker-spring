@@ -26,10 +26,10 @@ public class AnalyticsService {
     private RentalRepository rentalRepository;
 
     /**
-     * Returns the list of categories (genres) with statistics about:
+     * Returns the list of categories (genres) with statistics of:
      * number of movies in category,
      * share of movies in the category of all movies,
-     * how many movies are rented in category,
+     * number of movies rented in category,
      * share of rentals in the category of all rentals,
      * average rating of movies in category.
      */
@@ -40,52 +40,53 @@ public class AnalyticsService {
 
         List<AnalyticsCategoryResponse> responses = new ArrayList<>();
 
+        int moviesInTotal = movies.size();
+        int rentalsInTotal = rentals.size();
+
         DecimalFormat decimalFormat = new DecimalFormat();
-        decimalFormat.setMaximumFractionDigits(1);
+        decimalFormat.setMaximumFractionDigits(2);
 
         for (Category category : categories) {
             AnalyticsCategoryResponse response = new AnalyticsCategoryResponse();
 
             response.setCategoryName(category.getName());
 
-            int moviesInTotal = 0;
-            int categoryMovieCount = 0;
+            int moviesInCategory = 0;
             for (Movie movie : movies) {
-                moviesInTotal++;
                 if (movie.getCategory().getName().equals(category.getName())) {
-                    categoryMovieCount++;
+                    moviesInCategory++;
                 }
             }
-            response.setMoviesInCategory(categoryMovieCount);
+            response.setMoviesInCategory(moviesInCategory);
 
-            Float shareOfMovies = (float) categoryMovieCount / moviesInTotal;
+            Float shareOfMovies = (float) moviesInCategory / moviesInTotal;
             response.setShareOfMovies(Float.valueOf(decimalFormat.format(shareOfMovies)));
 
-            int rentalsInTotal = 0;
-            int categoryRentalCount = 0;
-            int categoryRentalRatings = 0;
-            int categoryRatingsCount = 0;
+            int rentalsInCategory = 0;
+            int sumOfMovieRatingsInCategory = 0;
+            int ratedMoviesInCategory = 0;
             for (Rental rental : rentals) {
-                rentalsInTotal++;
                 if (rental.getMovie().getCategory().getName().equals(category.getName())) {
-                    categoryRentalCount++;
+                    rentalsInCategory++;
 
                     Integer rating = rental.getRating();
                     if (rating == null) {
                         continue;
                     }
-                    categoryRentalRatings += rating;
-                    categoryRatingsCount ++;
+                    sumOfMovieRatingsInCategory += rating;
+                    ratedMoviesInCategory++;
                 }
-                response.setRentalsInCategory(categoryRentalCount);
-                if (categoryRentalRatings == 0 || categoryRatingsCount ==  0){
+
+                if (sumOfMovieRatingsInCategory == 0 || ratedMoviesInCategory == 0) {
                     continue;
                 }
-                Float avRatingInCategory = (float) categoryMovieCount / moviesInTotal;
+                Float avRatingInCategory = (float) (sumOfMovieRatingsInCategory / ratedMoviesInCategory);
                 response.setAvRatingInCategory(Float.valueOf(decimalFormat.format(avRatingInCategory)));
             }
 
-            Float shareOfRentals = (float)categoryRentalCount / rentalsInTotal;
+            response.setRentalsInCategory(rentalsInCategory);
+
+            Float shareOfRentals = (float) rentalsInCategory / rentalsInTotal;
             response.setShareOfRentals(Float.valueOf(decimalFormat.format(shareOfRentals)));
 
             responses.add(response);
