@@ -23,4 +23,9 @@ public class AnalyticsController {
     public List<AnalyticsMovieResponse> getMovieAnalytics() {
         return analyticsService.getMovieAnalytics();
     }
+
+    @GetMapping("/year")
+    public List<AnalyticsYearResponse> getYearAnalytics() {
+        return analyticsService.getYearAnalytics();
+    }
 }

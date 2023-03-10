@@ -152,4 +152,53 @@ public class AnalyticsService {
         }
         return responses;
     }
+
+    /**
+     * Returns the list of years with statistics of:
+     * number of rentals in that year,
+     * share of rentals of that year of all rentals,
+     * average rating of movies of that year.
+     */
+    public List<AnalyticsYearResponse> getYearAnalytics() {
+        List<MovieDetails> details = movieDetailsRepository.findAll();
+        List<Rental> rentals = rentalRepository.findAll();
+
+        int rentalsInTotal = rentals.size();
+
+        DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setMaximumFractionDigits(2);
+
+        List<AnalyticsYearResponse> responses = new ArrayList<>();
+
+        for (MovieDetails d : details) {
+            AnalyticsYearResponse response = new AnalyticsYearResponse();
+            response.setReleaseYear(d.getYear());
+
+            int sumOfMovieRentals = 0;
+            int sumOfMovieRatings = 0;
+            int nrOfRates = 0;
+            for (Rental rental : rentals) {
+                String rentedMovie = rental.getMovie().getName();
+                String year = movieDetailsRepository.findByMovieName(rentedMovie).getYear();
+                if (d.getYear().equals(year)) {
+                    sumOfMovieRentals++;
+
+                    if (rental.getRating() == null) {
+                        continue;
+                    }
+                    sumOfMovieRatings += rental.getRating();
+                    nrOfRates++;
+                }
+                response.setMovieRentals(sumOfMovieRentals);
+
+                Float shareOfRentals = (float) sumOfMovieRentals / rentalsInTotal;
+                response.setShareOfRentals(shareOfRentals);
+
+                Float avMovieRating = (float) sumOfMovieRatings / nrOfRates;
+                response.setAvMovieRating(avMovieRating);
+            }
+            responses.add(response);
+        }
+        return responses;
+    }
 }
