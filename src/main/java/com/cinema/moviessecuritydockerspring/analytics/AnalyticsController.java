@@ -18,4 +18,9 @@ public class AnalyticsController {
     public List<AnalyticsCategoryResponse> getCategoryAnalytics() {
         return analyticsService.getCategoryAnalytics();
     }
+
+    @GetMapping("/movie")
+    public List<AnalyticsMovieResponse> getMovieAnalytics() {
+        return analyticsService.getMovieAnalytics();
+    }
 }
