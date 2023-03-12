@@ -3,6 +3,7 @@ package com.cinema.moviessecuritydockerspring.domain.moviedetails;
 import com.cinema.moviessecuritydockerspring.domain.category.Category;
 import com.cinema.moviessecuritydockerspring.domain.movie.Movie;
 import com.cinema.moviessecuritydockerspring.domain.movie.MovieRepository;
+import com.cinema.moviessecuritydockerspring.domain.price.PriceService;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,9 @@ class MovieDetailsServiceTest {
 
     @Mock
     private MovieRepository movieRepository;
+
+    @Mock
+    private PriceService priceService;
 
     @Mock
     private ValidationService validationService;
@@ -61,7 +65,10 @@ class MovieDetailsServiceTest {
         details.setDescription("Kirjeldus");
         details.setMovie(movieEntity);
 
+        String price = "6";
+
         when(movieDetailsRepository.findByMovieName(movieEntity.getName())).thenReturn(details);
+        when(priceService.setPrice(price)).thenReturn(price);
     }
 
     /**
@@ -88,6 +95,7 @@ class MovieDetailsServiceTest {
      */
     @Test
     void updateDetails() {
+        when(movieDetailsMapper.partialUpdate(request, details)).thenReturn(details);
         movieDetailsService.updateDetails(request);
 
         verify(movieDetailsMapper, times(1)).partialUpdate(request, details);
