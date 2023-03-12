@@ -58,6 +58,7 @@ public class MovieDetailsService {
 
         MovieDetails movie = movieDetailsRepository.findByMovieName(request.getMovieName());
         MovieDetails updatedMovie = movieDetailsMapper.partialUpdate(request, movie);
+        updatedMovie.setPrice(priceService.setPrice(request.getMovieName()));
 
         movieDetailsRepository.save(updatedMovie);
     }
