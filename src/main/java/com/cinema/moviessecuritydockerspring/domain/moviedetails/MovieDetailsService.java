@@ -44,7 +44,8 @@ public class MovieDetailsService {
         newDetails.setMovie(movie);
 
         MovieDetails savedDetails = movieDetailsRepository.save(newDetails);
-        newDetails.setPrice(priceService.setPrice(request.getMovieName()));
+        savedDetails.setPrice(priceService.setPrice(request.getMovieName()));
+        movieDetailsRepository.save(savedDetails);
 
         return movieDetailsMapper.toDto(savedDetails);
     }

@@ -15,4 +15,5 @@ public class MovieDetailsRequest implements Serializable {
     private String country;
     private String description;
     private String movieName;
+    private String price;
 }
