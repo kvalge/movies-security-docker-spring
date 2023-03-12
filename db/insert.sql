@@ -66,6 +66,9 @@ VALUES (DEFAULT, 'Spy Game', 1);
 INSERT INTO movie (id, name, category_id)
 VALUES (DEFAULT, 'Lost in Translation', 5);
 
+INSERT INTO movie (id, name, category_id)
+VALUES (DEFAULT, 'Bohemian Rhapsody', 5);
+
 
 INSERT INTO movie_details (id, director, writer, stars, year, country, description, movie_id)
 VALUES (DEFAULT,
@@ -115,3 +118,12 @@ VALUES (DEFAULT,
         '2003',
         'United States, Japan',
         'A faded movie star and a neglected young woman form an unlikely bond after crossing paths in Tokyo.', 5);
+
+INSERT INTO movie_details (id, director, writer, stars, year, country, description, movie_id)
+VALUES (DEFAULT,
+        'Bryan Singer',
+        'Anthony McCarten, Peter Morgan',
+        'Rami Malek, Lucy Boynton, Gwilym Lee',
+        '2018',
+        'United KingdomUnited States',
+        'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).', 5);
