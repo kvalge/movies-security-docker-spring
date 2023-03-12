@@ -19,6 +19,7 @@ javadoc directory with index.html file to get general overview of the project.
 category: for movie categories (genres) with add, get all, get by name and delete functionalities.  
 movie: add, get by name, get all, update and delete functionalities.  
 moviedetails: to add and manage detailed info to movies.  
+price: calculates movie price according to release year and statistics of rentals.
 role: add new and delete functionalities. Roles are ADMIN and USER.  
 user: get all, get by username and delete functionalities.   
 register: register user functionality.  
