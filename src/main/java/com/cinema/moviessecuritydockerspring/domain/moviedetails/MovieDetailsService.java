@@ -2,6 +2,7 @@ package com.cinema.moviessecuritydockerspring.domain.moviedetails;
 
 import com.cinema.moviessecuritydockerspring.domain.movie.Movie;
 import com.cinema.moviessecuritydockerspring.domain.movie.MovieRepository;
+import com.cinema.moviessecuritydockerspring.domain.price.PriceService;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class MovieDetailsService {
 
     @Resource
     private MovieRepository movieRepository;
+
+    @Resource
+    private PriceService priceService;
 
     @Resource
     private ValidationService validationService;
@@ -40,6 +44,7 @@ public class MovieDetailsService {
         newDetails.setMovie(movie);
 
         MovieDetails savedDetails = movieDetailsRepository.save(newDetails);
+        newDetails.setPrice(priceService.setPrice(request.getMovieName()));
 
         return movieDetailsMapper.toDto(savedDetails);
     }

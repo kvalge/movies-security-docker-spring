@@ -67,7 +67,7 @@ INSERT INTO movie (id, name, category_id)
 VALUES (DEFAULT, 'Lost in Translation', 5);
 
 INSERT INTO movie (id, name, category_id)
-VALUES (DEFAULT, 'Bohemian Rhapsody', 5);
+VALUES (DEFAULT, 'Bohemian Rhapsody', 6);
 
 
 INSERT INTO movie_details (id, director, writer, stars, year, country, description, movie_id)
@@ -126,4 +126,4 @@ VALUES (DEFAULT,
         'Rami Malek, Lucy Boynton, Gwilym Lee',
         '2018',
         'United KingdomUnited States',
-        'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).', 5);
+        'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).', 6);

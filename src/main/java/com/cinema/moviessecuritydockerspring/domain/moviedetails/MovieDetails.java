@@ -43,6 +43,10 @@ public class MovieDetails {
     @Column(name = "description", nullable = false, length = 900)
     private String description;
 
+    @Size(max = 20)
+    @Column(name = "price", length = 20)
+    private String price;
+
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "movie_id", nullable = false)
