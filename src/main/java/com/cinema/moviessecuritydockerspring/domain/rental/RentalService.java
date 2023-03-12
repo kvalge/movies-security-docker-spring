@@ -4,6 +4,7 @@ import com.cinema.moviessecuritydockerspring.domain.movie.Movie;
 import com.cinema.moviessecuritydockerspring.domain.movie.MovieRepository;
 import com.cinema.moviessecuritydockerspring.domain.user.User;
 import com.cinema.moviessecuritydockerspring.domain.user.UserRepository;
+import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,16 @@ public class RentalService {
     @Resource
     private MovieRepository movieRepository;
 
-    public void addLending(RentalRequest request) {
+    @Resource
+    private ValidationService validationService;
+
+    /**
+     * Checks whether the user and the movie exists before adding to user the new rental of the requested movie.
+     */
+    public void addRental(RentalRequest request) {
+        validationService.userNotFound(request.getUsername());
+        validationService.movieNotFound(request.getMovieName());
+
         Rental rental = rentalMapper.toEntity(request);
 
         Rental newRental = new Rental();

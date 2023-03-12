@@ -1,6 +1,5 @@
 package com.cinema.moviessecuritydockerspring.domain.category;
 
-import com.cinema.moviessecuritydockerspring.domain.movie.MovieRepository;
 import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -15,9 +14,6 @@ public class CategoryService {
 
     @Resource
     private CategoryRepository categoryRepository;
-
-    @Resource
-    private MovieRepository movieRepository;
 
     @Resource
     private ValidationService validationService;

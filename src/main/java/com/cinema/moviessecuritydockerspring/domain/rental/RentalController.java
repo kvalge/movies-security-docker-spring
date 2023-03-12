@@ -14,7 +14,7 @@ public class RentalController {
 
     @PostMapping("/new")
     public void addRental(@RequestBody RentalRequest request) {
-        rentalService.addLending(request);
+        rentalService.addRental(request);
     }
 
     @GetMapping("/username")
