@@ -24,8 +24,8 @@ public class PriceService {
     /**
      * Sets movie price according to the number of rentals and the release year.
      * If the release year is less than 5 years from the current year, the price is 6.00.
-     * if the release year is less than 9 year from the current year and the number of rentals is more than or equal to 490, the price is 3.00.
-     * if the release year is less than 9 year from the current year and the number of rentals is less than 490, the price is 2.00.
+     * If the release year is less than 9 year from the current year and the number of rentals is more than or equal to 490, the price is 3.00.
+     * If the release year is less than 9 year from the current year and the number of rentals is less than 490, the price is 2.00.
      * All the rest of movies are for free.
      */
     public String setPrice(String movieName) {
