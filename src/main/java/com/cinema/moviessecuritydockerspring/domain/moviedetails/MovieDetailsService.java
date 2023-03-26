@@ -51,6 +51,13 @@ public class MovieDetailsService {
         return movieDetailsMapper.toDto(movieDetails);
     }
 
+
+    public MovieDetailsResponse getDetailsByMovieId(Long movieId) {
+        MovieDetails movieDetails = movieDetailsRepository.findByMovieId(movieId);
+
+        return movieDetailsMapper.toResponse(movieDetails);
+    }
+
     /**
      * Checks whether the movie exists to update of its details.
      */

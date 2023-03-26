@@ -11,6 +11,9 @@ public interface MovieDetailsMapper {
     @Mapping(target = "movieName", source = "movie.name")
     MovieDetailsRequest toDto(MovieDetails movieDetails);
 
+    @Mapping(target = "movieName", source = "movie.name")
+    MovieDetailsResponse toResponse(MovieDetails movieDetails);
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     MovieDetails partialUpdate(MovieDetailsRequest movieDetailsRequest, @MappingTarget MovieDetails movieDetails);
 }

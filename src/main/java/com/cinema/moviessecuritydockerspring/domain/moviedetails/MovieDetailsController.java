@@ -15,6 +15,11 @@ public class MovieDetailsController {
         return movieDetailsService.addDetails(request);
     }
 
+    @GetMapping("/{id}")
+    public MovieDetailsResponse getDetailsByMovieId(@PathVariable Long id) {
+        return movieDetailsService.getDetailsByMovieId(id);
+    }
+
     @PutMapping
     public void updateDetails(@RequestBody MovieDetailsRequest request) {
         movieDetailsService.updateDetails(request);
