@@ -14,6 +14,6 @@ public class MovieDetailsRequest implements Serializable {
     private String year;
     private String country;
     private String description;
+    private String image;
     private String movieName;
-    private String price;
 }

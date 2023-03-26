@@ -39,15 +39,16 @@ public class MovieDetailsService {
         newDetails.setYear(details.getYear());
         newDetails.setCountry(details.getCountry());
         newDetails.setDescription(details.getDescription());
+        newDetails.setImage(details.getImage());
 
         Movie movie = movieRepository.findByName(request.getMovieName());
         newDetails.setMovie(movie);
 
         MovieDetails savedDetails = movieDetailsRepository.save(newDetails);
         savedDetails.setPrice(priceService.setPrice(request.getMovieName()));
-        movieDetailsRepository.save(savedDetails);
+        MovieDetails movieDetails = movieDetailsRepository.save(savedDetails);
 
-        return movieDetailsMapper.toDto(savedDetails);
+        return movieDetailsMapper.toDto(movieDetails);
     }
 
     /**

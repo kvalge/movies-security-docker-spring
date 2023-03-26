@@ -47,6 +47,10 @@ public class MovieDetails {
     @Column(name = "price", length = 20)
     private String price;
 
+    @Size(max = 500)
+    @Column(name = "image", length = 500)
+    private String image;
+
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "movie_id", nullable = false)

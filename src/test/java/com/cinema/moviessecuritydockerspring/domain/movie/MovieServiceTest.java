@@ -167,8 +167,8 @@ class MovieServiceTest {
         List<MovieRequest> movieRequests = movieService.getAll();
 
         assertThat(movieRequests).isNotNull().isNotEmpty().hasSize(2);
-        assertThat(movieRequests.get(0).getName()).isEqualTo(movie.getName());
-        assertThat(movieRequests.get(1).getName()).isEqualTo(newMovie.getName());
+            assertThat(movieRequests.get(0).getName()).isEqualTo(movie.getName());
+            assertThat(movieRequests.get(1).getName()).isEqualTo(newMovie.getName());
     }
 
     /**
