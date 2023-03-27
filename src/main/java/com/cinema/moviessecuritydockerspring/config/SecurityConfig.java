@@ -53,6 +53,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.GET, "/movie/name").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/rental/username").hasAnyRole("ADMIN", "USER")
                                 .requestMatchers(HttpMethod.GET, "/rental/movieName").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/details/all").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/rental/new").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/movie/new").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.POST, "/details/new").hasRole("ADMIN")

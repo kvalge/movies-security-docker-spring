@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @CrossOrigin
+@RestController
 @RequestMapping("/details")
 public class MovieDetailsController {
 
@@ -18,7 +18,7 @@ public class MovieDetailsController {
         return movieDetailsService.addDetails(request);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<MovieDetailsResponse> getAllDetails() {
         return movieDetailsService.getAllDetails();
     }
