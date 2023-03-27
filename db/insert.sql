@@ -77,7 +77,7 @@ VALUES (DEFAULT,
         'Denzel Washington, Dakota Fanning',
         '2004',
         'Switzerland, United Kingdom, United States, Mexico',
-        'John Creasy, a despondent, alcoholic, former CIA officer turned bodyguard, who goes on a revenge rampage after his charge, nine-year-old Pita is abducted in Mexico City.',
+        'Hard-drinking, burnt-out ex-CIA operative John Creasy has given up on life until he''s hired as a bodyguard to protect 9-year-old Pita Ramos. Bit by bit, Creasy begins to reclaim some of his soul, but when Pita is kidnapped, Creasy''s fiery rage is finally released and he will stop at nothing to save her as he sets out on a dangerous, revenge-fueled rescue mission.',
         'https://images.bauerhosting.com/legacy/empire-tmdb/films/9509/images/2cBmeSLCyLqkn6YIERKdRUToqsa.jpg?format=jpg&quality=80&width=960&height=540&ratio=16-9&resize=aspectfill',
         1);
 
@@ -99,7 +99,7 @@ VALUES (DEFAULT,
         'Mads Mikkelsen, Thomas Bo Larsen, Magnus Millang, Lars Ranthe',
         '2020',
         'Denmark, Sweden, Netherlands',
-        'Four friends decide to embark on an experiment to test Skårderud theory. They start a group log of what occurs when they start drinking at regular intervals to maintain this blood alcohol level.',
+        'Teachers Martin, Tommy, Peter, and Nikolaj struggle with unmotivated students and feel that their lives have become boring and stale. At a dinner celebrating Nikolaj''s 40th birthday, the group begins to discuss the theory of psychiatrist Finn Skårderud — that humans are born with a blood alcohol content (BAC) deficiency of 0.05%, and that being at 0.05% makes one more creative and relaxed. The friends decide to embark on an experiment to test Skårderud''s theory.',
         'https://cdn.cnn.com/cnnnext/dam/assets/210415155417-another-round-film-still-1-full-169.jpg',
         3);
 
@@ -110,7 +110,7 @@ VALUES (DEFAULT,
         'Robert Redford, Brad Pitt, Catherine McCormack',
         '2001',
         'United States, Germany, Japan, France, United Kingdom',
-        'Retiring CIA agent Nathan Muir recalls his training of Tom Bishop while working against agency politics to free him from his Chinese captors.',
+        'In 1991, the United States and China are close to a major trade agreement. The Central Intelligence Agency (CIA) learns that its asset Tom has been arrested at a People''s Liberation Army prison in Suzhou and will be executed in 24 hours, unless the U.S. government claims him and bargains for his release. Bishop''s actions, unsanctioned by the CIA, risk jeopardizing the agreement. Nathan D. Muir, a veteran case officer and Bishop''s mentor, who plans to retire from the Agency at the end of the day, recalls his training of Tom Bishop while working against politics to free him from his Chinese captors.',
         'https://cdn.gelestatic.it/kataweb/tvzap/2018/07/Spy-Game-5_1000.jpg',
         4);
 
@@ -121,7 +121,7 @@ VALUES (DEFAULT,
         'Bill Murray, Scarlett Johansson',
         '2003',
         'United States, Japan',
-        'A faded movie star and a neglected young woman form an unlikely bond after crossing paths in Tokyo.',
+        'Bob Harris is a fading American movie star who is having a midlife crisis when he travels to Tokyo to promote Suntory whisky. There he befriends another estranged American named Charlotte, a young woman and recent college graduate. The film explores themes of alienation and disconnection against a backdrop of cultural displacement in Japan.',
         'https://images.squarespace-cdn.com/content/v1/5a59a10d4c326de87b455acd/1535389898147-UZ4KFUQEP0S5DRWL8NUG/Charlotte-Bob-lost-in-translation-1041685_1400_930.jpg?format=2500w',
         5);
 
@@ -132,6 +132,6 @@ VALUES (DEFAULT,
         'Rami Malek, Lucy Boynton, Gwilym Lee',
         '2018',
         'United KingdomUnited States',
-        'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).',
+        'A story of how a great vision and an epic failure changed the lives of billions. The ideas that dominate the tech industry and our day to day lives were born at a secretive Silicon Valley start-up named “General Magic”, which spun out of Apple in 1990 to create the first handheld personal communicator (or "smartphone").',
         'https://neiloseman.com/wp-content/uploads/2021/12/bohemian.jpeg',
         6);
