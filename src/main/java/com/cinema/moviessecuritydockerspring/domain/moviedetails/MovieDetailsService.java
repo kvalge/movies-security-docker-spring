@@ -7,6 +7,8 @@ import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieDetailsService {
 
@@ -80,5 +82,11 @@ public class MovieDetailsService {
         MovieDetails details = movieDetailsRepository.findByMovieName(name);
 
         movieDetailsRepository.delete(details);
+    }
+
+    public List<MovieDetailsResponse> getAllDetails() {
+        List<MovieDetails> movieDetails = movieDetailsRepository.findAll();
+
+        return movieDetailsMapper.toResponse(movieDetails);
     }
 }

@@ -3,7 +3,10 @@ package com.cinema.moviessecuritydockerspring.domain.moviedetails;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@CrossOrigin
 @RequestMapping("/details")
 public class MovieDetailsController {
 
@@ -13,6 +16,11 @@ public class MovieDetailsController {
     @PostMapping("/new")
     public MovieDetailsRequest addDetails(@RequestBody MovieDetailsRequest request) {
         return movieDetailsService.addDetails(request);
+    }
+
+    @GetMapping
+    public List<MovieDetailsResponse> getAllDetails() {
+        return movieDetailsService.getAllDetails();
     }
 
     @GetMapping("/{id}")
