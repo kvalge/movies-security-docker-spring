@@ -54,10 +54,23 @@ public class MovieDetailsService {
     }
 
 
-    public MovieDetailsResponse getDetailsByMovieId(Long movieId) {
+/*    public MovieDetailsResponse getDetailsById(Long movieId) {
         MovieDetails movieDetails = movieDetailsRepository.findByMovieId(movieId);
 
         return movieDetailsMapper.toResponse(movieDetails);
+    }*/
+
+    public MovieDetailsResponse getDetailsById(Long id) {
+        List<MovieDetails> movieDetails = movieDetailsRepository.findAll();
+
+        MovieDetailsResponse response = null;
+        for (MovieDetails details : movieDetails) {
+            if (details.getId() == id) {
+
+                response = movieDetailsMapper.toResponse(details);
+            }
+        }
+        return response;
     }
 
     /**

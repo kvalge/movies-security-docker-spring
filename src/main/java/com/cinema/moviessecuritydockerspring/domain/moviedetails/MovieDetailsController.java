@@ -23,9 +23,14 @@ public class MovieDetailsController {
         return movieDetailsService.getAllDetails();
     }
 
-    @GetMapping("/{id}")
+/*    @GetMapping("/{id}")
     public MovieDetailsResponse getDetailsByMovieId(@PathVariable Long id) {
         return movieDetailsService.getDetailsByMovieId(id);
+    }*/
+
+    @GetMapping("/{id}")
+    public MovieDetailsResponse getDetailsById(@PathVariable Long id) {
+        return movieDetailsService.getDetailsById(id);
     }
 
     @PutMapping
