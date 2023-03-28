@@ -15,4 +15,7 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
 
     @Query("select r from Rental r where upper(r.movie.name) = upper(?1)")
     List<Rental> findByMovieName(String name);
+
+    @Query("select r from Rental r where r.movie.id = ?1")
+    List<Rental> findByMovieId(Long id);
 }

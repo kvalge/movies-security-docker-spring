@@ -11,25 +11,21 @@ import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
 
     @Resource
     MovieRepository movieRepository;
-
     @Resource
     private MovieMapper movieMapper;
-
     @Resource
     private CategoryRepository categoryRepository;
-
     @Resource
     private MovieDetailsService movieDetailsService;
-
     @Resource
     private RentalRepository rentalRepository;
-
     @Resource
     private ValidationService validationService;
 
@@ -84,6 +80,39 @@ public class MovieService {
         DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMaximumFractionDigits(1);
         response.setAvRating(Float.valueOf(decimalFormat.format(avRating)));
+
+        return response;
+    }
+
+    /**
+     * Checks is there a requested movie in the database before returning it.
+     * Adds average rating to movie info.
+     * In case of user hasn't inserted a rating to the rented movie this rental will be left out of
+     * the average rating calculation.
+     */
+    public MovieResponse getById(Long id) {
+        Optional<Movie> byId = movieRepository.findById(id);
+
+        validationService.movieNotFound(byId.get().getName());
+
+        MovieResponse response = new MovieResponse();
+        response.setMovieName(byId.get().getName());
+        response.setCategoryName(byId.get().getCategory().getName());
+
+        List<Rental> rentals = rentalRepository.findByMovieId(id);
+        int rentalCount = 0;
+        int ratingSum = 0;
+        for (Rental rental : rentals) {
+            if (rental.getRating() == null) {
+                continue;
+            }
+            rentalCount ++;
+            ratingSum += rental.getRating();
+        }
+
+        if (ratingSum != 0) {
+            response.setAvRating((float) (ratingSum / rentalCount));
+        }
 
         return response;
     }

@@ -23,6 +23,11 @@ public class MovieController {
         return movieService.getByName(name);
     }
 
+    @GetMapping("/{id}")
+    public MovieResponse getById(@PathVariable Long id) {
+        return movieService.getById(id);
+    }
+
     @GetMapping
     public List<MovieRequest> getAll() {
         return movieService.getAll();
