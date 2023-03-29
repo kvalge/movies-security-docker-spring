@@ -43,7 +43,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http.csrf().disable().cors().and()
                 .authorizeHttpRequests((authorize) ->
                 {
                     try {
@@ -51,11 +51,12 @@ public class SecurityConfig {
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/movie").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/movie/name").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/rental/new").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/movie/new").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/rental/username").hasAnyRole("ADMIN", "USER")
                                 .requestMatchers(HttpMethod.GET, "/rental/movieName").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.GET, "/details/all").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/rental/new").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/movie/new").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/details/{id}").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/details/new").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/movie").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/details").hasRole("ADMIN")

@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class MovieDetailsResponse {
 
+    private Long id;
     private String director;
     private String writer;
     private String stars;
