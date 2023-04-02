@@ -131,7 +131,8 @@ VALUES (DEFAULT,
         'Anthony McCarten, Peter Morgan',
         'Rami Malek, Lucy Boynton, Gwilym Lee',
         '2018',
-        'United KingdomUnited States',
-        'A story of how a great vision and an epic failure changed the lives of billions. The ideas that dominate the tech industry and our day to day lives were born at a secretive Silicon Valley start-up named “General Magic”, which spun out of Apple in 1990 to create the first handheld personal communicator (or "smartphone").',
+        'United Kingdom, United States',
+        'The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985).',
         'https://neiloseman.com/wp-content/uploads/2021/12/bohemian.jpeg',
         6);
+
