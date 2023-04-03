@@ -23,10 +23,16 @@ public class MovieDetailsController {
         return movieDetailsService.getAllDetails();
     }
 
-    @GetMapping("/{id}")
-    public MovieDetailsResponse getDetailsById(@PathVariable Long id) {
+    @GetMapping("/id")
+    public MovieDetailsResponse getDetailsById(@RequestParam Long id) {
         return movieDetailsService.getDetailsById(id);
     }
+
+    @GetMapping("/movie")
+    public MovieDetailsResponse getDetailsByMovieId(@RequestParam Long id) {
+        return movieDetailsService.getDetailsByMovieId(id);
+    }
+
 
     @PutMapping
     public void updateDetails(@RequestBody MovieDetailsRequest request) {
