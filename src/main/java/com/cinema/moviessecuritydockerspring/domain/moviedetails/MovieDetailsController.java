@@ -33,6 +33,10 @@ public class MovieDetailsController {
         return movieDetailsService.getDetailsByMovieId(id);
     }
 
+    @GetMapping("/name")
+    public MovieDetailsResponse getDetailsByMovieName(@RequestParam String movieName) {
+        return movieDetailsService.getDetailsByMovieName(movieName);
+    }
 
     @PutMapping
     public void updateDetails(@RequestBody MovieDetailsRequest request) {

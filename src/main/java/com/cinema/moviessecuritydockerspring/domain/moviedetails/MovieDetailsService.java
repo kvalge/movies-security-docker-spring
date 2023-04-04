@@ -79,6 +79,13 @@ public class MovieDetailsService {
         return movieDetailsMapper.toResponse(details);
     }
 
+
+    public MovieDetailsResponse getDetailsByMovieName(String movieName) {
+        MovieDetails details = movieDetailsRepository.findByMovieName(movieName);
+
+        return movieDetailsMapper.toResponse(details);
+    }
+
     /**
      * Checks whether the movie exists to update of its details.
      */
