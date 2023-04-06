@@ -38,6 +38,7 @@ public class MovieDetailsController {
         return movieDetailsService.getDetailsByMovieName(movieName);
     }
 
+
     @PutMapping
     public void updateDetails(@RequestBody MovieDetailsRequest request) {
         movieDetailsService.updateDetails(request);
