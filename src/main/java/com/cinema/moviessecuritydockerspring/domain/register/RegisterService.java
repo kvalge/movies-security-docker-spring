@@ -5,6 +5,7 @@ import com.cinema.moviessecuritydockerspring.domain.role.RoleRepository;
 import com.cinema.moviessecuritydockerspring.domain.user.User;
 import com.cinema.moviessecuritydockerspring.domain.user.UserMapper;
 import com.cinema.moviessecuritydockerspring.domain.user.UserRepository;
+import com.cinema.moviessecuritydockerspring.validation.ValidationService;
 import jakarta.annotation.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,12 @@ public class RegisterService {
     @Resource
     private PasswordEncoder passwordEncoder;
 
+    @Resource
+    private ValidationService validationService;
+
     public void register(RegisterRequest request) {
+        validationService.userExists(request.getUsername(), request.getEmail());
+
         User user = userMapper.toEntity(request);
 
         User newUser = new User();

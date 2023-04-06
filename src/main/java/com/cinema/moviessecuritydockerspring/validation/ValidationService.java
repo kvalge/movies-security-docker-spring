@@ -59,6 +59,16 @@ public class ValidationService {
         }
     }
 
+    public String userExists(String username, String email) {
+        User user = userRepository.findByUsernameOrEmail(username, email);
+        if (user == null) {
+            return REQUEST_COMPLETED;
+        } else {
+            String message = "User or email already exists!";
+            throw new DataExistsException(message);
+        }
+    }
+
     /**
      * Checks whether there are users in the database to return.
      */
