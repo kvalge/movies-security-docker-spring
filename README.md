@@ -1,4 +1,4 @@
-# Movie Project
+# Movie Rental Project
 The movie application which allows to manage authenticated and authorized users and movies.  
 Used IDE: IntelliJ 2023.1.  
 
